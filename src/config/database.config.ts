@@ -25,6 +25,9 @@ const sequelize = new Sequelize(
     logging: config.logging !== undefined ? config.logging : false,
     timezone: config.timezone,
     dialectOptions: config.dialectOptions,
+    define: {
+      underscored: true // <--- ¡AGREGA ESTO AQUÍ TAMBIÉN!
+    }
   },
 );
 

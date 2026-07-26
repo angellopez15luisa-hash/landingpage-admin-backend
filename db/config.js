@@ -3,6 +3,9 @@ require('dotenv').config();
 
 const configCommon = {
   timezone: "-05:00", // Zona horaria de Lima (UTC -5)
+   define: {
+    underscored: true // <--- ¡AGREGA ESTO AQUÍ!
+  },
   dialectOptions: {
     dateStrings: true, // Fuerza a Sequelize a devolver fechas como strings en vez de objetos Date en UTC
     typeCast: true,    // Ayuda a mantener el formato string al leer de la base de datos
