@@ -1,5 +1,10 @@
 import { Sequelize } from "sequelize";
-import { initNavbarModel, Navbar } from "../models";
+import {
+  initNavbarModel,
+  Navbar,
+  initItemSectionModel,
+  ItemSection,
+} from "../models";
 import dotenv from "dotenv";
 
 const dbConfig = require("../../db/config");
@@ -33,8 +38,9 @@ const sequelize = new Sequelize(
 );
 
 initNavbarModel(sequelize);
+initItemSectionModel(sequelize);
 
-const models = { Navbar };
+const models = { Navbar, ItemSection };
 
 Object.values(models).forEach((model: any) => {
   if (typeof model.associate === "function") {
@@ -44,7 +50,7 @@ Object.values(models).forEach((model: any) => {
 
 export type DbModels = typeof models;
 
-export { sequelize, Navbar };
+export { sequelize, Navbar, ItemSection };
 
 export const testConnection = async () => {
   try {
