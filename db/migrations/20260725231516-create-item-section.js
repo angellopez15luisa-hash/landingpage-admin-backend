@@ -21,7 +21,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      url: {
+      href: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -33,16 +33,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BOOLEAN,
       },
-      created_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("current_timestamp"),
-      },
-      updated_at: {
-        allowNull: false,
-        type: "timestamp",
-        defaultValue: Sequelize.literal("current_timestamp on update current_timestamp"),
-      },
+    created_at: {
+      allowNull: false,
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updated_at: {
+      allowNull: false,
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+    },
     });
   },
 

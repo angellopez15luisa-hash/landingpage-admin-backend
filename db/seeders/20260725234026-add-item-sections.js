@@ -18,37 +18,37 @@ module.exports = {
       [
         {
           text: "Inicio",
-          url: "#inicio",
+          href: "#inicio",
           flag_navbar: false,
           flag_footer: true,
         },
         {
           text: "¿Como pedir?",
-          url: "#como-pedir",
+          href: "#como-pedir",
           flag_navbar: true,
           flag_footer: true,
         },
         {
           text: "Catalogo",
-          url: "#catalogo",
+          href: "#catalogo",
           flag_navbar: true,
           flag_footer: true,
         },
         {
           text: "Opiniones",
-          url: "#opiniones",
+          href: "#opiniones",
           flag_navbar: true,
           flag_footer: true,
         },
         {
           text: "Preguntas",
-          url: "#faq",
+          href: "#faq",
           flag_navbar: true,
           flag_footer: false,
         },
         {
           text: "Contacto",
-          url: "#contacto",
+          href: "#contacto",
           flag_navbar: true,
           flag_footer: false,
         },
