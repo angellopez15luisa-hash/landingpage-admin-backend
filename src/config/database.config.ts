@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize";
+import { initNavbarModel, Navbar } from "../models";
 import dotenv from "dotenv";
 
 const dbConfig = require("../../db/config");
@@ -26,12 +27,25 @@ const sequelize = new Sequelize(
     timezone: config.timezone,
     dialectOptions: config.dialectOptions,
     define: {
-      underscored: true // <--- ¡AGREGA ESTO AQUÍ TAMBIÉN!
-    }
+      underscored: true, // <--- ¡AGREGA ESTO AQUÍ TAMBIÉN!
+    },
   },
 );
 
-// Función opcional para probar la conexión inmediatamente
+initNavbarModel(sequelize);
+
+const models = { Navbar };
+
+Object.values(models).forEach((model: any) => {
+  if (typeof model.associate === "function") {
+    model.associate(models);
+  }
+});
+
+export type DbModels = typeof models;
+
+export { sequelize, Navbar };
+
 export const testConnection = async () => {
   try {
     await sequelize.authenticate();
@@ -40,5 +54,3 @@ export const testConnection = async () => {
     console.error("No se pudo conectar a la base de datos:", error);
   }
 };
-
-export { sequelize };
