@@ -4,6 +4,22 @@ import {
   Navbar,
   initItemSectionModel,
   ItemSection,
+  initHeroSectionModel,
+  HeroSection,
+  initOrderStepModel,
+  OrderStep,
+  initCatalogCategoryModel,
+  CatalogCategory,
+  initCatalogItemModel,
+  CatalogItem,
+  initReviewOpinionModel,
+  ReviewOpinion,
+  initFaqItemQuestionModel,
+  FaqItemQuestion,
+  initSocialLinkModel,
+  SocialLink,
+  initFooterSectionModel,
+  FooterSection,
 } from "../models";
 import dotenv from "dotenv";
 
@@ -39,8 +55,27 @@ const sequelize = new Sequelize(
 
 initNavbarModel(sequelize);
 initItemSectionModel(sequelize);
+initHeroSectionModel(sequelize);
+initOrderStepModel(sequelize);
+initCatalogCategoryModel(sequelize);
+initCatalogItemModel(sequelize);
+initReviewOpinionModel(sequelize);
+initFaqItemQuestionModel(sequelize);
+initSocialLinkModel(sequelize);
+initFooterSectionModel(sequelize);
 
-const models = { Navbar, ItemSection };
+const models = {
+  Navbar,
+  ItemSection,
+  HeroSection,
+  OrderStep,
+  CatalogCategory,
+  CatalogItem,
+  ReviewOpinion,
+  FaqItemQuestion,
+  SocialLink,
+  FooterSection,
+};
 
 Object.values(models).forEach((model: any) => {
   if (typeof model.associate === "function") {
@@ -50,7 +85,19 @@ Object.values(models).forEach((model: any) => {
 
 export type DbModels = typeof models;
 
-export { sequelize, Navbar, ItemSection };
+export {
+  sequelize,
+  Navbar,
+  ItemSection,
+  HeroSection,
+  OrderStep,
+  CatalogCategory,
+  CatalogItem,
+  ReviewOpinion,
+  FaqItemQuestion,
+  SocialLink,
+  FooterSection,
+};
 
 export const testConnection = async () => {
   try {
