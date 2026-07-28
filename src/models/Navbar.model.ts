@@ -1,5 +1,3 @@
-// import { Model, Sequelize } from "sequelize";
-
 import {
   CreationOptional,
   DataTypes,
