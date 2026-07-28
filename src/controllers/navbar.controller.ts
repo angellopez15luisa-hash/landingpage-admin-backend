@@ -22,4 +22,24 @@ export class NavbarController {
       next(error);
     }
   };
+
+  static update = async (
+    req: Request<NavbarType.UpdateParams, {}, NavbarType.UpdateInput, {}>,
+    res: Response<NavbarType.UpdateResponse>,
+    next: NextFunction,
+  ): Promise<void> => {
+    const navbar = res.locals.navbar;
+    Object.assign(navbar, {
+      ...req.body,
+    });
+    await navbar.save();
+    try {
+      res.status(201).json({
+        message: "Navbar actualizada satisfactoriamente",
+        success: true,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }

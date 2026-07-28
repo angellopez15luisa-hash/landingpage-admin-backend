@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { success, z } from "zod";
 
 export class NavbarSchema {
   static createInputSchema = z.object({
@@ -20,6 +20,18 @@ export class NavbarSchema {
     body: this.createInputSchema.shape.body.partial(),
   });
 
+  static updateParamsSchema = z.object({
+    id: z
+      .string()
+      .regex(/^\d+$/, "El ID debe ser un número válido")
+      .transform((val) => Number(val)),
+  });
+
+  static updateRouteSchema = z.object({
+    params: this.updateParamsSchema,
+    body: this.createInputSchema.shape.body.partial(),
+  });
+
   static getResponseSchema = z.object({
     success: z.boolean(),
     navbar: z.object({
@@ -29,6 +41,11 @@ export class NavbarSchema {
       textBtn: z.string(),
       hrefBtn: z.string(),
     }),
+  });
+
+  static updateResponseSchema = z.object({
+    message: z.string(),
+    success: z.boolean(),
   });
 }
 

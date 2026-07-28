@@ -10,5 +10,11 @@ export namespace NavbarType {
     typeof NavbarSchema.updateInputSchema
   >["body"];
 
+  export type UpdateParams = z.infer<typeof NavbarSchema.updateParamsSchema>;
+
   export type GetResponse = z.infer<typeof NavbarSchema.getResponseSchema>;
+
+  export type UpdateResponse = z.infer<
+    typeof NavbarSchema.updateResponseSchema
+  >;
 }
