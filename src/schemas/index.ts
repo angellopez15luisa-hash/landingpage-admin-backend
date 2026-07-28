@@ -1,0 +1,1 @@
+export { NavbarSchema } from './navbar.schema'

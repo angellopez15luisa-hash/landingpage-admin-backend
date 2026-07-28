@@ -1,9 +1,14 @@
 import { z } from "zod";
-import {
-  createNavbarSchema,
-  updateNavbarSchema,
-} from "../schemas/navbar.schema";
+import { NavbarSchema } from "../schemas";
 
-export type CreateNavbarInput = z.infer<typeof createNavbarSchema>["body"];
+export namespace NavbarType {
+  export type CreateInput = z.infer<
+    typeof NavbarSchema.createInputSchema
+  >["body"];
 
-export type UpdateNavbarInput = z.infer<typeof updateNavbarSchema>["body"];
+  export type UpdateInput = z.infer<
+    typeof NavbarSchema.updateInputSchema
+  >["body"];
+
+  export type GetResponse = z.infer<typeof NavbarSchema.getResponseSchema>;
+}
