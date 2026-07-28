@@ -43,7 +43,8 @@
     "socket.io": "^4.8.3",
     "tsx": "^4.23.1",
     "typescript": "^7.0.2",
-    "uuidv4": "^6.2.13"
+    "uuidv4": "^6.2.13",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
