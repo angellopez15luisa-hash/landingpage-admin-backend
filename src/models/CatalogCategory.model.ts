@@ -15,7 +15,13 @@ export class CatalogCategory extends Model<
   declare public id: CreationOptional<number>;
   declare public text: string;
 
-  public static associate(models: DbModels) {}
+  public static associate(models: DbModels) {
+    CatalogCategory.hasMany(models.CatalogItem, {
+      sourceKey: 'id',
+      foreignKey: 'catalogCategoryId',
+      as:'catalogItems'
+    })
+  }
 }
 
 export const initCatalogCategoryModel = (sequelize: Sequelize) => {

@@ -1,5 +1,6 @@
 import {
   CatalogCategory,
+  CatalogItem,
   HeroSection,
   ItemSection,
   Navbar,
@@ -14,6 +15,7 @@ declare global {
       heroSection: HeroSection;
       orderStep: OrderStep;
       catalogCategory: CatalogCategory;
+      catalogItem: CatalogItem;
     }
   }
 }

@@ -3,3 +3,4 @@ export { NavbarMiddleware } from "./navbar.middleware";
 export { ItemSectionMiddleware } from "./item-section.middleware";
 export { HeroSectionMiddleware } from "./hero-section.middleware";
 export { CatalogCategoryMiddleware } from "./catalog-category.middleware";
+export { CatalogItemMiddleware } from "./catalog-item.middleware";

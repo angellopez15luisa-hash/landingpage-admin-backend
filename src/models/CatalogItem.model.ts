@@ -21,7 +21,13 @@ export class CatalogItem extends Model<
   declare public imagePath: string;
   declare public badge: string;
 
-  public static associate(models: DbModels) {}
+  public static associate(models: DbModels) {
+    CatalogItem.belongsTo(models.CatalogCategory, {
+      targetKey: "id",
+      foreignKey: "catalogCategoryId",
+      as: "catalogCategory",
+    });
+  }
 }
 
 export const initCatalogItemModel = (sequelize: Sequelize) => {
