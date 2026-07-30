@@ -25,7 +25,7 @@ export const initReviewOpinionModel = (sequelize: Sequelize) => {
     {
       id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
       name: { type: DataTypes.STRING, allowNull: false },
-      rating: { type: DataTypes.STRING, allowNull: false },
+      rating: { type: DataTypes.INTEGER, allowNull: false },
       text: { type: DataTypes.TEXT, allowNull: false },
     },
     {

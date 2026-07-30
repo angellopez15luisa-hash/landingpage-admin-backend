@@ -4,3 +4,4 @@ export { ItemSectionMiddleware } from "./item-section.middleware";
 export { HeroSectionMiddleware } from "./hero-section.middleware";
 export { CatalogCategoryMiddleware } from "./catalog-category.middleware";
 export { CatalogItemMiddleware } from "./catalog-item.middleware";
+export { ReviewOpinionMiddleware } from "./review-opinion.middleware";

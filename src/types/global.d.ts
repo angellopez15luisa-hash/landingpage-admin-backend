@@ -5,6 +5,7 @@ import {
   ItemSection,
   Navbar,
   OrderStep,
+  ReviewOpinion,
 } from "../models";
 
 declare global {
@@ -16,6 +17,7 @@ declare global {
       orderStep: OrderStep;
       catalogCategory: CatalogCategory;
       catalogItem: CatalogItem;
+      reviewOpinion: ReviewOpinion;
     }
   }
 }

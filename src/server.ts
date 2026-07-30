@@ -13,6 +13,7 @@ import heroSectionRoutes from "./routes/hero-section.route";
 import orderStepRoutes from "./routes/order-step.route";
 import catalogCategoryRoutes from "./routes/catalog-category.route";
 import catalogItemRoutes from "./routes/catalog-item.route";
+import reviewOpinionRoutes from "./routes/review-opinion.route";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use("/api/hero-sections", heroSectionRoutes);
 app.use("/api/order-steps", orderStepRoutes);
 app.use("/api/catalog-categories", catalogCategoryRoutes);
 app.use("/api/catalog-items", catalogItemRoutes);
+app.use("/api/review-opinions", reviewOpinionRoutes);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).send("¡Ruta no encontrada!");
