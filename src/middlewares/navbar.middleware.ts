@@ -1,18 +1,16 @@
 import { NextFunction, Request, Response } from "express";
-import { NavbarType } from "../types";
 import { Navbar } from "../models";
 import { CustomError } from "../types/custom";
+import { INavbarUpdateParams } from "../types/navbar.type";
 
 export class NavbarMiddleware {
   static exists = async (
-    req: Request<NavbarType.UpdateParams, {}, {}, {}>,
+    req: Request<INavbarUpdateParams, {}, {}, {}>,
     res: Response<void>,
     next: NextFunction,
   ): Promise<void> => {
-      try {
-        console.log("first")
-        const { id } = req.params;
-        console.log(id)
+    try {
+      const { id } = req.params;
       const navbar = await Navbar.findByPk(id);
       if (!navbar) {
         const error = new CustomError("Navbar no existe", 404);

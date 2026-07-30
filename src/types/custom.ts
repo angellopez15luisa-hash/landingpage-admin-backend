@@ -8,3 +8,8 @@ export class CustomError extends Error {
     Object.setPrototypeOf(this, CustomError.prototype);
   }
 }
+
+export type IMessageResponse = {
+  message: string;
+  success: boolean;
+};

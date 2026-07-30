@@ -10,7 +10,7 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
 
-    await queryInterface.createTable("hero-sections", {
+    await queryInterface.createTable("hero_sections", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -60,6 +60,6 @@ module.exports = {
      * await queryInterface.dropTable('users');
      */
 
-    await queryInterface.dropTable("hero-sections");
+    await queryInterface.dropTable("hero_sections");
   },
 };

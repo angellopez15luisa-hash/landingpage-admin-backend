@@ -13,7 +13,7 @@ module.exports = {
      * }], {});
     */
 
-    await queryInterface.bulkInsert('hero-sections', [
+    await queryInterface.bulkInsert('hero_sections', [
       {
         image_path: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1600&q=80',
         tag: '⚡ Colección Exclusiva 2026',
@@ -47,6 +47,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    await queryInterface.bulkDelete('hero-sections', null, {})
+    await queryInterface.bulkDelete('hero_sections', null, {})
   }
 };

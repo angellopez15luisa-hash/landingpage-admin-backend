@@ -1,11 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-import { NavbarType } from "../types";
 import { Navbar } from "../models";
+import {
+  INavbarGetResponse, INavbarUpdateBody, INavbarUpdateParams, INavbarUpdateResponse
+} from "../types/navbar.type";
 
 export class NavbarController {
   static get = async (
     req: Request<{}, {}, {}, {}>,
-    res: Response<NavbarType.GetResponse>,
+    res: Response<INavbarGetResponse>,
     next: NextFunction,
   ): Promise<void> => {
     try {
@@ -13,7 +15,6 @@ export class NavbarController {
         attributes: ["id", "textLogo", "hrefLogo", "textBtn", "hrefBtn"],
         order: [["id", "asc"]],
       });
-
       res.status(200).json({
         success: true,
         navbar: navbar,
@@ -24,8 +25,8 @@ export class NavbarController {
   };
 
   static update = async (
-    req: Request<NavbarType.UpdateParams, {}, NavbarType.UpdateInput, {}>,
-    res: Response<NavbarType.UpdateResponse>,
+    req: Request<INavbarUpdateParams, {}, INavbarUpdateBody, {}>,
+    res: Response<INavbarUpdateResponse>,
     next: NextFunction,
   ): Promise<void> => {
     const navbar = res.locals.navbar;

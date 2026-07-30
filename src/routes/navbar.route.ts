@@ -1,20 +1,18 @@
 import { Router } from "express";
 import { NavbarController } from "../controllers/navbar.controller";
 import { ValidateMiddleware } from "../middlewares";
-import { NavbarSchema } from "../schemas";
-import multer from "multer";
 import { NavbarMiddleware } from "../middlewares/navbar.middleware";
-
+import { updateNavbarSchema } from "../schemas/navbar.schema";
+ 
 const router = Router();
 
-router.get("/get", [], NavbarController.get);
+router.get("/get", NavbarController.get);
 
 router.put(
   "/update/:id",
-  [
-    ValidateMiddleware.validate(NavbarSchema.updateRouteSchema),
-    NavbarMiddleware.exists,
-  ],
+  updateNavbarSchema,
+  ValidateMiddleware.validate,
+  NavbarMiddleware.exists,
   NavbarController.update,
 );
 

@@ -1,52 +1,79 @@
-import { success, z } from "zod";
+import { body, param } from "express-validator";
 
-export class NavbarSchema {
-  static createInputSchema = z.object({
-    body: z.object({
-      textLogo: z
-        .string()
-        .min(3, "El texto del logo debe tener al menos 3 caracteres")
-        .max(50, "El texto del logo no puede superar los 50 caracteres"),
-      hrefLogo: z.string().min(1, "El enlace del logo es obligatorio"),
-      textBtn: z
-        .string()
-        .min(2, "El texto del botón debe tener al menos 2 caracteres")
-        .max(20, "El texto del boton no puede superar los 20 caracteres"),
-      hrefBtn: z.string().min(1, "El enlace del boton es obligatorio"),
-    }),
-  });
+// Validaciones para Crear (POST)
+export const createNavbarSchema = [
+  body("textLogo")
+    .exists()
+    .withMessage("El campo textLogo es obligatorio")
+    .isString()
+    .withMessage("El textLogo debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El textLogo no puede estar vacío"),
 
-  static updateInputSchema = z.object({
-    body: this.createInputSchema.shape.body.partial(),
-  });
+  body("hrefLogo")
+    .exists()
+    .withMessage("El campo hrefLogo es obligatorio")
+    .isString()
+    .withMessage("El hrefLogo debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El hrefLogo no puede estar vacío"),
 
-  static updateParamsSchema = z.object({
-    id: z
-      .string()
-      .regex(/^\d+$/, "El ID debe ser un número válido")
-      .transform((val) => Number(val)),
-  });
+  body("textBtn")
+    .exists()
+    .withMessage("El campo textBtn es obligatorio")
+    .isString()
+    .withMessage("El textBtn debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El textBtn no puede estar vacío"),
 
-  static updateRouteSchema = z.object({
-    params: this.updateParamsSchema,
-    body: this.createInputSchema.shape.body.partial(),
-  });
+  body("hrefBtn")
+    .exists()
+    .withMessage("El campo hrefBtn es obligatorio")
+    .isString()
+    .withMessage("El hrefBtn debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El hrefBtn no puede estar vacío"),
+];
 
-  static getResponseSchema = z.object({
-    success: z.boolean(),
-    navbar: z.object({
-      id: z.number(),
-      textLogo: z.string(),
-      hrefLogo: z.string(),
-      textBtn: z.string(),
-      hrefBtn: z.string(),
-    }),
-  });
+// Validaciones para Actualizar (PUT) - Campos opcionales
+export const updateNavbarSchema = [
+  param("id")
+    .exists()
+    .withMessage("El ID es obligatorio")
+    .custom((val) => /^\d+$/.test(val))
+    .withMessage("El ID debe ser un número válido")
+    .toInt(),
 
-  static updateResponseSchema = z.object({
-    message: z.string(),
-    success: z.boolean(),
-  });
-}
+  body("textLogo")
+    // .optional()
+    .exists()
+    .withMessage("El campo textLogo es obligatorio")
+    .isString()
+    .withMessage("El textLogo debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El textLogo no puede estar vacío"),
 
-// export const navbarGet
+  body("hrefLogo")
+    .exists()
+    .withMessage("El campo hrefLogo es obligatorio")
+    .isString()
+    .withMessage("El hrefLogo debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El hrefLogo no puede estar vacío"),
+
+  body("textBtn")
+    .exists()
+    .withMessage("El campo textBtn es obligatorio")
+    .isString()
+    .withMessage("El textBtn debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El textBtn no puede estar vacío"),
+
+  body("hrefBtn")
+    .exists()
+    .withMessage("El campo hrefBtn es obligatorio")
+    .isString()
+    .withMessage("El hrefBtn debe ser una cadena de texto")
+    .notEmpty()
+    .withMessage("El hrefBtn no puede estar vacío"),
+];

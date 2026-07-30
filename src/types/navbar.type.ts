@@ -1,20 +1,34 @@
-import { z } from "zod";
-import { NavbarSchema } from "../schemas";
+import { Navbar } from "../models";
+import { IMessageResponse } from "./custom";
+// import { Navbar } from "../models";
 
-export namespace NavbarType {
-  export type CreateInput = z.infer<
-    typeof NavbarSchema.createInputSchema
-  >["body"];
+// export type INavbar = z.infer<typeof navbarSchema>;
 
-  export type UpdateInput = z.infer<
-    typeof NavbarSchema.updateInputSchema
-  >["body"];
+// export type NavbarCreateBody = Omit<Navbar, "id">;
 
-  export type UpdateParams = z.infer<typeof NavbarSchema.updateParamsSchema>;
+// export type NavbarUpdateBody = Omit<Navbar, "id">;
 
-  export type GetResponse = z.infer<typeof NavbarSchema.getResponseSchema>;
+// export type NavbarUpdateParams = Pick<Navbar, "id">;
 
-  export type UpdateResponse = z.infer<
-    typeof NavbarSchema.updateResponseSchema
-  >;
+// export type NavbarGetResponse = z.Infer<typeof navbarGetResponseSchema>;
+
+// export type NavbarUpdateResponse = z.infer<typeof navbarUpdateResponseSchema>;
+
+// -----------------------------------------------------------------------------
+
+export type INavbar = Pick<
+  Navbar,
+  "id" | "textLogo" | "hrefLogo" | "textBtn" | "hrefBtn"
+>;
+
+export type INavbarCreateBody = Omit<INavbar, "id">;
+
+export type INavbarUpdateBody = Omit<INavbar, "id">;
+
+export type INavbarUpdateParams = Pick<INavbar, "id">;
+
+export interface INavbarGetResponse extends Omit<IMessageResponse, "message"> {
+  navbar: INavbar;
 }
+
+export type INavbarUpdateResponse = IMessageResponse;

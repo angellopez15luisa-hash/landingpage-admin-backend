@@ -1,1 +1,0 @@
-export { NavbarType } from './navbar.type'
