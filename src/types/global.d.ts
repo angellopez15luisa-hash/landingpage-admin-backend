@@ -1,4 +1,10 @@
-import { HeroSection, ItemSection, Navbar, OrderStep } from "../models";
+import {
+  CatalogCategory,
+  HeroSection,
+  ItemSection,
+  Navbar,
+  OrderStep,
+} from "../models";
 
 declare global {
   namespace Express {
@@ -7,6 +13,7 @@ declare global {
       itemSection: ItemSection;
       heroSection: HeroSection;
       orderStep: OrderStep;
+      catalogCategory: CatalogCategory;
     }
   }
 }

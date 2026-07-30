@@ -11,6 +11,7 @@ import navbarRoutes from "./routes/navbar.route";
 import itemSectionRoutes from "./routes/item-section.route";
 import heroSectionRoutes from "./routes/hero-section.route";
 import orderStepRoutes from "./routes/order-step.route";
+import catalogCategories from "./routes/catalog-category.route";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use("/api/navbars", navbarRoutes);
 app.use("/api/item-sections", itemSectionRoutes);
 app.use("/api/hero-sections", heroSectionRoutes);
 app.use("/api/order-steps", orderStepRoutes);
+app.use("/api/catalog-categories", catalogCategories);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).send("¡Ruta no encontrada!");
