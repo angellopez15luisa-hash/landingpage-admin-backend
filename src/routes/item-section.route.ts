@@ -13,7 +13,7 @@ router.put(
   "/update/:id",
   updateItemSectionSchema,
   ValidateMiddleware.validate,
-  ItemSectionMiddleware.exists,
+  ItemSectionMiddleware.notExists,
   ItemSectionController.update,
 );
 

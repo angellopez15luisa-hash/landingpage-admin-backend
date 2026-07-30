@@ -5,3 +5,5 @@ export { HeroSectionMiddleware } from "./hero-section.middleware";
 export { CatalogCategoryMiddleware } from "./catalog-category.middleware";
 export { CatalogItemMiddleware } from "./catalog-item.middleware";
 export { ReviewOpinionMiddleware } from "./review-opinion.middleware";
+export { FaqItemQuestionMiddleware } from "./faq-item-question.middleware";
+export { SocialLinkMiddleware } from "./social-link.middleware";

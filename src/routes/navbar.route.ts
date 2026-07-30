@@ -12,7 +12,7 @@ router.put(
   "/update/:id",
   updateNavbarSchema,
   ValidateMiddleware.validate,
-  NavbarMiddleware.exists,
+  NavbarMiddleware.notExists,
   NavbarController.update,
 );
 

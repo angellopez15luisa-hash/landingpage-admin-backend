@@ -4,7 +4,7 @@ import { ItemSection } from "../models";
 import { CustomError } from "../types/custom";
 
 export class ItemSectionMiddleware {
-  static exists = async (
+  static notExists = async (
     req: Request<IItemSectionUpdateParams, {}, {}, {}>,
     res: Response<void>,
     next: NextFunction,

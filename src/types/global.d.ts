@@ -1,11 +1,13 @@
 import {
   CatalogCategory,
   CatalogItem,
+  FaqItemQuestion,
   HeroSection,
   ItemSection,
   Navbar,
   OrderStep,
   ReviewOpinion,
+  SocialLink,
 } from "../models";
 
 declare global {
@@ -18,6 +20,8 @@ declare global {
       catalogCategory: CatalogCategory;
       catalogItem: CatalogItem;
       reviewOpinion: ReviewOpinion;
+      faqItemQuestion: FaqItemQuestion;
+      socialLink:SocialLink
     }
   }
 }

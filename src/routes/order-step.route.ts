@@ -12,7 +12,7 @@ router.put(
   "/update/:id",
   updateOrderStepSchema,
   ValidateMiddleware.validate,
-  OrderStepMiddleware.exists,
+  OrderStepMiddleware.notExists,
   OrderStepController.update,
 );
 

@@ -11,7 +11,7 @@ router.put(
   "/update/:id",
   updateHeroSectionSchema,
   ValidateMiddleware.validate,
-  HeroSectionMiddleware.exists,
+  HeroSectionMiddleware.notExists,
   HeroSectionController.update,
 );
 

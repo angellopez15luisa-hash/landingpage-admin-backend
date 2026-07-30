@@ -11,7 +11,7 @@ router.put(
   "/update/:id",
   updateCatalogItemSchema,
   ValidateMiddleware.validate,
-    CatalogItemMiddleware.exists,
+    CatalogItemMiddleware.notExists,
     CatalogItemMiddleware.notExistCatalogCategoryId,
     CatalogItemController.update,
 );

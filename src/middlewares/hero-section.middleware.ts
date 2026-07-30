@@ -4,7 +4,7 @@ import { HeroSection } from "../models";
 import { CustomError } from "../types/custom";
 
 export class HeroSectionMiddleware {
-  static exists = async (
+  static notExists = async (
     req: Request<IHeroSectionUpdateParams, {}, {}, {}>,
     res: Response<void>,
     next: NextFunction,

@@ -4,7 +4,7 @@ import { OrderStep } from "../models";
 import { CustomError } from "../types/custom";
 
 export class OrderStepMiddleware {
-  static exists = async (
+  static notExists = async (
     req: Request<IOrderStepUpdateParams, {}, {}, {}>,
     res: Response<void>,
     next: NextFunction,

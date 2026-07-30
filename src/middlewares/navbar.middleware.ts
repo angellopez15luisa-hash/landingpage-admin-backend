@@ -4,7 +4,7 @@ import { CustomError } from "../types/custom";
 import { INavbarUpdateParams } from "../types/navbar.type";
 
 export class NavbarMiddleware {
-  static exists = async (
+  static notExists = async (
     req: Request<INavbarUpdateParams, {}, {}, {}>,
     res: Response<void>,
     next: NextFunction,

@@ -7,7 +7,7 @@ import { CatalogCategory, CatalogItem } from "../models";
 import { CustomError } from "../types/custom";
 
 export class CatalogItemMiddleware {
-  static exists = async (
+  static notExists = async (
     req: Request<ICatalogItemUpdateParams, {}, {}, {}>,
     res: Response<void>,
     next: NextFunction,

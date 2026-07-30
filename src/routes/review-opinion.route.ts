@@ -11,7 +11,7 @@ router.put(
   "/update/:id",
   updateReviewOpinionSchema,
   ValidateMiddleware.validate,
-  ReviewOpinionMiddleware.exists,
+  ReviewOpinionMiddleware.notExists,
   ReviewOpinionController.update,
 );
 

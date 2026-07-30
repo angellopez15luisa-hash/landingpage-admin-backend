@@ -4,7 +4,7 @@ import { ReviewOpinion } from "../models";
 import { CustomError } from "../types/custom";
 
 export class ReviewOpinionMiddleware {
-  static exists = async (
+  static notExists = async (
     req: Request<IReviewOpinionUpdateParams, {}, {}, {}>,
     res: Response<void>,
     next: NextFunction

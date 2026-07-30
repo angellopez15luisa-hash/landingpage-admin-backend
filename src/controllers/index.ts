@@ -5,3 +5,5 @@ export { OrderStepController } from "./order-step.controller";
 export { CatalogCategoryController } from "./catalog-category.controller";
 export { CatalogItemController } from "./catalog-item.controller";
 export { ReviewOpinionController } from "./review-opinion.controller";
+export { FaqItemQuestionController } from "./faq-item-question.controller";
+export { SocialLinkController } from "./social-link.controller";
