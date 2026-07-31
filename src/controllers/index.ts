@@ -7,3 +7,4 @@ export { CatalogItemController } from "./catalog-item.controller";
 export { ReviewOpinionController } from "./review-opinion.controller";
 export { FaqItemQuestionController } from "./faq-item-question.controller";
 export { SocialLinkController } from "./social-link.controller";
+export { FooterSectionController } from "./footer-section.controller";

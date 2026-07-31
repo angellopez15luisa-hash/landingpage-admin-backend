@@ -15,7 +15,8 @@ import catalogCategoryRoutes from "./routes/catalog-category.route";
 import catalogItemRoutes from "./routes/catalog-item.route";
 import reviewOpinionRoutes from "./routes/review-opinion.route";
 import faqItemQuestionRoutes from "./routes/faq-item-question.route";
-import socialLinkRoutes from './routes/social-link.route'
+import socialLinkRoutes from "./routes/social-link.route";
+import footerSectionRoutes from "./routes/footer-section.route";
 
 dotenv.config();
 
@@ -35,7 +36,8 @@ app.use("/api/catalog-categories", catalogCategoryRoutes);
 app.use("/api/catalog-items", catalogItemRoutes);
 app.use("/api/review-opinions", reviewOpinionRoutes);
 app.use("/api/faq-item-questions", faqItemQuestionRoutes);
-app.use('/api/social-links',socialLinkRoutes)
+app.use("/api/social-links", socialLinkRoutes);
+app.use("/api/footer-sections", footerSectionRoutes);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).send("¡Ruta no encontrada!");

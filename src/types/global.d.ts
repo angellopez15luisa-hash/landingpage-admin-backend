@@ -2,6 +2,7 @@ import {
   CatalogCategory,
   CatalogItem,
   FaqItemQuestion,
+  FooterSection,
   HeroSection,
   ItemSection,
   Navbar,
@@ -21,7 +22,8 @@ declare global {
       catalogItem: CatalogItem;
       reviewOpinion: ReviewOpinion;
       faqItemQuestion: FaqItemQuestion;
-      socialLink:SocialLink
+      socialLink: SocialLink;
+      footerSection: FooterSection;
     }
   }
 }

@@ -7,3 +7,4 @@ export { CatalogItemMiddleware } from "./catalog-item.middleware";
 export { ReviewOpinionMiddleware } from "./review-opinion.middleware";
 export { FaqItemQuestionMiddleware } from "./faq-item-question.middleware";
 export { SocialLinkMiddleware } from "./social-link.middleware";
+export { FooterSectionMiddleware } from "./footer-section.middleware";
