@@ -1,17 +1,23 @@
 import { Router } from "express";
 import { HeroSectionController } from "../controllers";
-import { updateHeroSectionSchema } from "../schemas/hero-section.schema";
-import { HeroSectionMiddleware, ValidateMiddleware } from "../middlewares";
+import { validateSchema } from "../middlewares/validate.middleware";
+import { HeroSectionSchema } from "../schemas";
+import { upload } from "../config/cloudinary.config";
 
 const router = Router();
 
 router.get("/get-all", HeroSectionController.getAll);
 
-router.put(
+router.get(
+  "/get-by-id/:id",
+  validateSchema(HeroSectionSchema.getById),
+  HeroSectionController.getById,
+);
+
+router.patch(
   "/update/:id",
-  updateHeroSectionSchema,
-  ValidateMiddleware.validate,
-  HeroSectionMiddleware.notExists,
+  upload.single("imagePath"),
+  validateSchema(HeroSectionSchema.update),
   HeroSectionController.update,
 );
 

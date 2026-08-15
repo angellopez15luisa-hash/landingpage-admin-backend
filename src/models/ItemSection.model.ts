@@ -32,6 +32,10 @@ export const initItemSectionModel = (sequelize: Sequelize) => {
     },
     {
       sequelize,
+      timestamps: true,
+      defaultScope: {
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
     },
   );
 };

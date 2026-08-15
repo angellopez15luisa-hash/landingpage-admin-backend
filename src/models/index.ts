@@ -14,3 +14,8 @@ export {
 } from "./FaqItemQuestion.model";
 export { SocialLink, initSocialLinkModel } from "./SocialLink.model";
 export { FooterSection, initFooterSectionModel } from "./FooterSection.model";
+export { HeroSetting, initHeroSettingModel } from "./hero-setting.model";
+export {
+  GeneralSetting,
+  initGeneralSettingModel,
+} from "./general-setting.model";

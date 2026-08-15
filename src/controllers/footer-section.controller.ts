@@ -6,31 +6,17 @@ import {
   IFooterSectionUpdateResponse,
 } from "../types/footer-section.type";
 import { FooterSection } from "../models";
+import { FooterSectionType } from "../types";
+import { FooterSectionService } from "../services";
 
 export class FooterSectionController {
   static get = async (
-    req: Request<{}, {}, {}, {}>,
-    res: Response<IFooterSectionGetResponse>,
+    req: Request,
+    res: Response<FooterSectionType.GetResponse>,
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const footerSection = await FooterSection.findOne({
-        attributes: [
-          "id",
-          "textLogo",
-          "description",
-          "phone",
-          "iconPhone",
-          "email",
-          "iconEmail",
-          "address",
-          "iconAddress",
-          "hours",
-          "iconHours",
-        ],
-        order: [["id", "asc"]],
-      });
-
+      const footerSection = await FooterSectionService.get();
       res.status(200).json({
         footerSection,
         success: true,
@@ -41,16 +27,17 @@ export class FooterSectionController {
   };
 
   static update = async (
-    req: Request<IFooterSectionUpdateParams, {}, IFooterSectionUpdateBody, {}>,
-    res: Response<IFooterSectionUpdateResponse>,
+    req: Request<
+      FooterSectionType.UpdateParams,
+      {},
+      FooterSectionType.UpdateBody
+    >,
+    res: Response<FooterSectionType.UpdateResponse>,
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const footerSection = res.locals.footerSection;
-      Object.assign(footerSection, {
-        ...req.body,
-      });
-      await footerSection.save();
+      const id = Number(req.params.id);
+      await FooterSectionService.update(id, req.body);
       res.status(200).json({
         message: "footer-section actualizado satisfactoriamente",
         success: true,

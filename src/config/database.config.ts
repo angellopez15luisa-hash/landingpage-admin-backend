@@ -20,6 +20,10 @@ import {
   SocialLink,
   initFooterSectionModel,
   FooterSection,
+  HeroSetting,
+  initHeroSettingModel,
+  GeneralSetting,
+  initGeneralSettingModel,
 } from "../models";
 import dotenv from "dotenv";
 
@@ -63,7 +67,8 @@ initReviewOpinionModel(sequelize);
 initFaqItemQuestionModel(sequelize);
 initSocialLinkModel(sequelize);
 initFooterSectionModel(sequelize);
-
+initHeroSettingModel(sequelize);
+initGeneralSettingModel(sequelize);
 
 const models = {
   Navbar,
@@ -76,6 +81,8 @@ const models = {
   FaqItemQuestion,
   SocialLink,
   FooterSection,
+  HeroSetting,
+  GeneralSetting,
 };
 
 Object.values(models).forEach((model: any) => {
@@ -98,6 +105,8 @@ export {
   FaqItemQuestion,
   SocialLink,
   FooterSection,
+  HeroSetting,
+  GeneralSetting,
 };
 
 export const testConnection = async () => {

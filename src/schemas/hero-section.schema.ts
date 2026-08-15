@@ -1,47 +1,67 @@
-import { body, param } from "express-validator";
+import z from "zod";
 
-export const updateHeroSectionSchema = [
-  param("id")
-    .exists()
-    .withMessage("El ID es obligatorio")
-    .custom((val) => /^\d+$/.test(val))
-    .withMessage("El ID debe ser un número válido")
-    .toInt(),
-  body("imagePath")
-    .exists()
-    .withMessage("El campo imagePath es obligatorio")
-    .isString()
-    .withMessage("El imagePath debe ser una cadena de texto")
-    .notEmpty()
-    .withMessage("El imagePath no puede estar vacío"),
-  body("tag")
-    .exists()
-    .withMessage("El campo tag es obligatorio")
-    .isString()
-    .withMessage("El tag debe ser una cadena de texto")
-    .notEmpty()
-    .withMessage("El tag no puede estar vacío"),
-  body("title")
-    .exists()
-    .withMessage("El campo title es obligatorio")
-    .isString()
-    .withMessage("El title debe ser una cadena de texto")
-    .notEmpty()
-    .withMessage("El title no puede estar vacío"),
-  body("highlightText")
-    .exists()
-    .withMessage("El campo highlightText es obligatorio")
-    .isString()
-    .withMessage("El highlightText debe ser una cadena de texto")
-    .notEmpty()
-    .withMessage("El highlightText no puede estar vacío"),
-  body("description")
-    .exists()
-    .withMessage("El campo description es obligatorio")
-    .isString()
-    .withMessage("El description debe ser una cadena de texto")
-    .notEmpty()
-    .withMessage("El description no puede estar vacío"),
-];
-
-
+export namespace HeroSectionSchema {
+  export const getById = z.object({
+    params: z.object({
+      id: z.string().transform((val, ctx) => {
+        const parsed = Number(val);
+        if (isNaN(parsed)) {
+          ctx.addIssue({
+            code: "custom",
+            message: "El ID debe ser un numero valido",
+          });
+          return z.NEVER;
+        }
+        if (parsed <= 0) {
+          ctx.addIssue({
+            code: "custom",
+            message: "El ID debe ser mayor a cero",
+          });
+          return z.NEVER;
+        }
+        return val;
+      }),
+    }),
+  });
+  export const update = z.object({
+    params: z.object({
+      id: z.string().transform((val, ctx) => {
+        const parsed = Number(val);
+        if (isNaN(parsed)) {
+          ctx.addIssue({
+            code: "custom",
+            message: "El ID debe ser un numero valido",
+          });
+          return z.NEVER;
+        }
+        if (parsed <= 0) {
+          ctx.addIssue({
+            code: "custom",
+            message: "El ID debe ser mayor a cero",
+          });
+          return z.NEVER;
+        }
+        return val;
+      }),
+    }),
+    body: z.object({
+      imagePath: z.string().optional(),
+      tag: z
+        .string({ error: "El tag debe ser una cadena de texto"})
+        .min(3, "El tag debe tener al menos tres caracteres")
+        .optional(),
+      title: z
+        .string({ error: "El title debe ser una cadena de texto" })
+        .min(3, "El title debe tener al menos tres caracteres")
+        .optional(),
+      highlightText: z
+        .string({ error: "El highlightText debe ser una cadena de texto" })
+        .min(3, "El highlightText debe tener al menos tres caracteres")
+        .optional(),
+      description: z
+        .string({ error: "La description debe ser una cadena de texto" })
+        .min(3, "La description debe tener al menos tres caracteres")
+        .optional(),
+    }),
+  });
+}

@@ -6,18 +6,20 @@ import {
   ISocialLinkUpdateResponse,
 } from "../types/social-link.type";
 import { SocialLink } from "../models";
+import { SocialLinkService } from "../services";
+import { SocialLinkType } from "../types";
 
 export class SocialLinkController {
   static getAll = async (
-    req: Request<{}, {}, {}, {}>,
-    res: Response<ISocialLinkGetAllResponse>,
+    req: Request,
+    res: Response<SocialLinkType.GetAllResponse>,
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const socialLinks = await SocialLink.findAll({
-        attributes: ["id", "name", "url", "icon", "flag"],
-      });
-
+      // const socialLinks = await SocialLink.findAll({
+      //   attributes: ["id", "name", "url", "icon", "flag"],
+      // });
+      const socialLinks = await SocialLinkService.getAll();
       res.status(200).json({
         socialLinks,
         success: true,
@@ -28,16 +30,17 @@ export class SocialLinkController {
   };
 
   static update = async (
-    req: Request<ISocialLinkUpdateParams, {}, ISocialLinkUpdateBody, {}>,
-    res: Response<ISocialLinkUpdateResponse>,
+    req: Request<SocialLinkType.UpdateParams, {}, SocialLinkType.UpdateBody>,
+    res: Response<SocialLinkType.UpdateResponse>,
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const socialLink = res.locals.socialLink;
-      Object.assign(socialLink, {
-        ...req.body,
-      });
-      await socialLink.save();
+      // const socialLink = res.locals.socialLink;
+      // Object.assign(socialLink, {
+      //   ...req.body,
+      // });
+      // await socialLink.save();
+      await SocialLinkService.update(Number(req.params.id), req.body);
       res.status(200).json({
         message: "social-link actualizado satisfactoriamente",
         success: true,

@@ -1,7 +1,12 @@
+import z from "zod";
 import { FaqItemQuestion } from "../models";
-import { IMessageResponse } from "./custom";
+import { IMessageResponse, MessageResponse } from "./custom";
+import { FaqItemQuestionSchema } from "../schemas";
 
-export type IFaqItemQuestion = Pick<FaqItemQuestion, "id" | "question" | "answer">;
+export type IFaqItemQuestion = Pick<
+  FaqItemQuestion,
+  "id" | "question" | "answer"
+>;
 
 export type IFaqItemQuestionCreateBody = Omit<IFaqItemQuestion, "id">;
 
@@ -17,3 +22,20 @@ export interface IFaqItemQuestionGetAllResponse extends Omit<
 }
 
 export type IFaqItemQuestionUpdateResponse = IMessageResponse;
+
+export namespace FaqItemQuestionType {
+
+  export type UpdateParams = z.infer<
+    typeof FaqItemQuestionSchema.update
+  >["params"];
+
+  export type UpdateBody = z.infer<typeof FaqItemQuestionSchema.update>["body"];
+
+  export type Response = FaqItemQuestion;
+
+  export type GetAllResponse = Omit<MessageResponse, "message"> & {
+    faqItemQuestions: Response[];
+  };
+
+  export type UpdateResponse = MessageResponse;
+}

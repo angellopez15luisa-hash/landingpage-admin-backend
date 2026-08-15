@@ -20,6 +20,7 @@ export class CatalogItem extends Model<
   declare public price: number;
   declare public imagePath: string;
   declare public badge: string;
+  declare public isActive: boolean;
 
   public static associate(models: DbModels) {
     CatalogItem.belongsTo(models.CatalogCategory, {
@@ -39,9 +40,18 @@ export const initCatalogItemModel = (sequelize: Sequelize) => {
       price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
       imagePath: { type: DataTypes.STRING, allowNull: false },
       badge: { type: DataTypes.STRING, allowNull: false },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
     },
     {
       sequelize,
+      timestamps: true,
+      defaultScope: {
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
     },
   );
 };

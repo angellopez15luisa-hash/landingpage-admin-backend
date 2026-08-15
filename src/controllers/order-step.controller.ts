@@ -6,18 +6,17 @@ import {
   IOrderStepUpdateResponse,
 } from "../types/order-step.type";
 import { OrderStep } from "../models";
+import { OrderStepType } from "../types";
+import { OrderStepService } from "../services";
 
 export class OrderStepController {
   static getAll = async (
-    req: Request<{}, {}, {}, {}>,
-    res: Response<IOrderStepGetAllResponse>,
+    req: Request,
+    res: Response<OrderStepType.GetAllResponse>,
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const orderSteps = await OrderStep.findAll({
-        attributes: ["id", "number", "title", "description"],
-      });
-
+      const orderSteps = await OrderStepService.getAll();
       res.status(200).json({
         orderSteps,
         success: false,
@@ -27,17 +26,30 @@ export class OrderStepController {
     }
   };
 
-  static update = async (
-    req: Request<IOrderStepUpdateParams, {}, IOrderStepUpdateBody, {}>,
-    res: Response<IOrderStepUpdateResponse>,
+  static getById = async (
+    req: Request<OrderStepType.GetParams>,
+    res: Response<OrderStepType.GetResponse>,
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const orderStep = res.locals.orderStep;
-      Object.assign(orderStep, {
-        ...req.body,
+      const orderStep = await OrderStepService.getById(Number(req.params.id));
+      res.status(200).json({
+        orderStep,
+        success: true,
       });
-      await orderStep.save();
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  static update = async (
+    req: Request<OrderStepType.UpdateParams, {}, OrderStepType.UpdateBody>,
+    res: Response<OrderStepType.UpdateResponse>,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      const id = Number(req.params.id);
+      await OrderStepService.update(id, req.body);
       res.status(201).json({
         message: "order-step actualizado satisfactoriamente",
         success: true,

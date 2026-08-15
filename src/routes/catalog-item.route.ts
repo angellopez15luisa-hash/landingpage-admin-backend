@@ -1,19 +1,37 @@
 import { Router } from "express";
 import { CatalogItemController } from "../controllers";
-import { updateCatalogItemSchema } from "../schemas/catalog-item.schema";
-import { CatalogItemMiddleware, ValidateMiddleware } from "../middlewares";
+import { validateSchema } from "../middlewares/validate.middleware";
+import { CatalogItemSchema } from "../schemas";
+import { upload } from "../config/cloudinary.config";
 
 const router = Router();
 
-router.get("/get-all", CatalogItemController.getAll);
+router.get("/", CatalogItemController.getAll);
 
-router.put(
-  "/update/:id",
-  updateCatalogItemSchema,
-  ValidateMiddleware.validate,
-    CatalogItemMiddleware.notExists,
-    CatalogItemMiddleware.notExistCatalogCategoryId,
-    CatalogItemController.update,
+router.get(
+  "/:id",
+  validateSchema(CatalogItemSchema.getById),
+  CatalogItemController.get,
+);
+
+router.post(
+  "/",
+  upload.single("imagePath"),
+  validateSchema(CatalogItemSchema.create),
+  CatalogItemController.create,
+);
+
+router.patch(
+  "/:id",
+  upload.single("imagePath"),
+  validateSchema(CatalogItemSchema.update),
+  CatalogItemController.update,
+);
+
+router.delete(
+  "/:id",
+  validateSchema(CatalogItemSchema.getById),
+  CatalogItemController.delete,
 );
 
 export default router;

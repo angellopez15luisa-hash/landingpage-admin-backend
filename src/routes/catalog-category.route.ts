@@ -1,18 +1,34 @@
 import { Router } from "express";
 import { CatalogCategoryController } from "../controllers";
-import { updateCatalogCategorySchema } from "../schemas/catalog-category.schema";
-import { CatalogCategoryMiddleware, ValidateMiddleware } from "../middlewares";
+import { CatalogCategorySchema } from "../schemas";
+import { validateSchema } from "../middlewares/validate.middleware";
 
 const router = Router();
 
-router.get("/get-all", CatalogCategoryController.getAll);
+router.get("/", CatalogCategoryController.getAll);
 
-router.put(
-  "/update/:id",
-  updateCatalogCategorySchema,
-  ValidateMiddleware.validate,
-  CatalogCategoryMiddleware.notExists,
+router.get(
+  "/:id",
+  validateSchema(CatalogCategorySchema.getById),
+  CatalogCategoryController.getById,
+);
+
+router.post(
+  "/",
+  validateSchema(CatalogCategorySchema.create),
+  CatalogCategoryController.create,
+);
+
+router.patch(
+  "/:id",
+  validateSchema(CatalogCategorySchema.update),
   CatalogCategoryController.update,
+);
+
+router.delete(
+  "/:id",
+  validateSchema(CatalogCategorySchema.getById),
+  CatalogCategoryController.delete,
 );
 
 export default router;

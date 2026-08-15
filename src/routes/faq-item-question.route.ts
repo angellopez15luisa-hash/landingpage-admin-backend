@@ -2,16 +2,23 @@ import { Router } from "express";
 import { FaqItemQuestionController } from "../controllers";
 import { updateFaqItemQuestionSchema } from "../schemas/faq-item-question.schema";
 import { FaqItemQuestionMiddleware, ValidateMiddleware } from "../middlewares";
+import { validateSchema } from "../middlewares/validate.middleware";
+import { FaqItemQuestionSchema } from "../schemas";
 
 const router = Router();
 
 router.get("/get-all", FaqItemQuestionController.getAll);
 
-router.put(
+// router.put(
+//   "/update/:id",
+//   updateFaqItemQuestionSchema,
+//   ValidateMiddleware.validate,
+//   FaqItemQuestionMiddleware.notExists,
+//   FaqItemQuestionController.update,
+// );
+router.patch(
   "/update/:id",
-  updateFaqItemQuestionSchema,
-  ValidateMiddleware.validate,
-  FaqItemQuestionMiddleware.notExists,
+  validateSchema(FaqItemQuestionSchema.update),
   FaqItemQuestionController.update,
 );
 

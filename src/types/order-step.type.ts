@@ -1,5 +1,7 @@
+import z from "zod";
 import { OrderStep } from "../models";
-import { IMessageResponse } from "./custom";
+import { OrderStepSchema } from "../schemas";
+import { IMessageResponse, MessageResponse } from "./custom";
 
 export type IOrderStep = Pick<
   OrderStep,
@@ -20,3 +22,23 @@ export interface IOrderStepGetAllResponse extends Omit<
 }
 
 export type IOrderStepUpdateResponse = IMessageResponse;
+
+export namespace OrderStepType {
+  export type UpdateParams = z.infer<typeof OrderStepSchema.update>["params"];
+
+  export type UpdateBody = z.infer<typeof OrderStepSchema.update>["body"];
+
+  export type GetParams = z.infer<typeof OrderStepSchema.getById>["params"];
+
+  export type Response = OrderStep;
+
+  export type GetResponse = Omit<MessageResponse, "message"> & {
+    orderStep: Response;
+  };
+
+  export type GetAllResponse = Omit<MessageResponse, "message"> & {
+    orderSteps: Response[];
+  };
+
+  export type UpdateResponse = MessageResponse;
+}

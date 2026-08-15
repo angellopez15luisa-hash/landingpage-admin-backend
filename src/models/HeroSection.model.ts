@@ -30,10 +30,14 @@ export const initHeroSectionModel = (sequelize: Sequelize) => {
       tag: { type: DataTypes.STRING, allowNull: false },
       title: { type: DataTypes.STRING, allowNull: false },
       highlightText: { type: DataTypes.STRING, allowNull: false },
-      description: { type: DataTypes.STRING, allowNull: false },
+      description: { type: DataTypes.TEXT, allowNull: false },
     },
     {
       sequelize,
+      timestamps: true,
+      defaultScope: {
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
     },
   );
 };

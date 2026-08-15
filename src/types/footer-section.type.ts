@@ -1,5 +1,7 @@
+import z from "zod";
 import { FooterSection } from "../models";
-import { IMessageResponse } from "./custom";
+import { IMessageResponse, MessageResponse } from "./custom";
+import { FooterSectionSchema } from "../schemas";
 
 export type IFooterSection = Pick<
   FooterSection,
@@ -37,3 +39,19 @@ export interface IFooterSectionGetResponse extends Omit<
 }
 
 export type IFooterSectionUpdateResponse = IMessageResponse;
+
+export namespace FooterSectionType {
+  export type UpdateParams = z.infer<
+    typeof FooterSectionSchema.update
+  >["params"];
+
+  export type UpdateBody = z.infer<typeof FooterSectionSchema.update>["body"];
+
+  export type Response = FooterSection;
+
+  export type GetResponse = Omit<MessageResponse, "message"> & {
+    footerSection: Response;
+  };
+
+  export type UpdateResponse = MessageResponse;
+}

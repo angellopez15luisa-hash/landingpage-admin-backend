@@ -1,7 +1,12 @@
 import { ReviewOpinion } from "../models";
-import { IMessageResponse } from "./custom";
+import { IMessageResponse, MessageResponse } from "./custom";
+import { ReviewOpinionSchema } from "../schemas";
+import z from "zod";
 
-export type IReviewOpinion = Pick<ReviewOpinion, "id" | "name" | "rating" | "text">;
+export type IReviewOpinion = Pick<
+  ReviewOpinion,
+  "id" | "name" | "rating" | "text"
+>;
 
 export type IReviewOpinionCreateBody = Omit<IReviewOpinion, "id">;
 
@@ -17,3 +22,20 @@ export interface IReviewOpinionGetAllResponse extends Omit<
 }
 
 export type IReviewOpinionUpdateResponse = IMessageResponse;
+
+export namespace ReviewOpnionType {
+  
+  export type UpdateParams = z.infer<
+    typeof ReviewOpinionSchema.update
+  >["params"];
+
+  export type UpdateBody = z.infer<typeof ReviewOpinionSchema.update>["body"];
+
+  export type Response = ReviewOpinion;
+
+  export type GetAllResponse = Omit<MessageResponse, "message"> & {
+    reviewOpinions: Response[];
+  };
+
+  export type UpdateResponse = MessageResponse;
+}

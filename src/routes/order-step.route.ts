@@ -1,18 +1,21 @@
 import { Router } from "express";
 import { OrderStepController } from "../controllers";
-import { updateOrderStepSchema } from "../schemas/order-step.schema";
-import { ValidateMiddleware } from "../middlewares";
-import { OrderStepMiddleware } from "../middlewares/order-step.middleware";
+import { validateSchema } from "../middlewares/validate.middleware";
+import { OrderStepSchema } from "../schemas";
 
 const router = Router();
 
-router.get("/get-all", OrderStepController.getAll);
+router.get("/", OrderStepController.getAll);
 
-router.put(
-  "/update/:id",
-  updateOrderStepSchema,
-  ValidateMiddleware.validate,
-  OrderStepMiddleware.notExists,
+router.get(
+  "/:id",
+  validateSchema(OrderStepSchema.getById),
+  OrderStepController.getById,
+);
+
+router.patch(
+  "/:id",
+  validateSchema(OrderStepSchema.update),
   OrderStepController.update,
 );
 
