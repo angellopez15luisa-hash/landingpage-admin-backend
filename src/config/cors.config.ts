@@ -10,6 +10,7 @@ export const corsConfig: CorsOptions = {
       process.env.FRONTEND_URL_5174,
       process.env.FRONTEND_URL_5175,
       process.env.FRONTEND_URL,
+      process.env.FRONTEND_URL_PUBLIC,
       undefined,
     ];
     if (whiteList.includes(origin)) {
