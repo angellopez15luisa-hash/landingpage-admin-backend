@@ -2,27 +2,27 @@ import nodemailer from "nodemailer";
 import { ENV } from "../config/env.config"; // Tu configuración global
 import "dotenv/config";
 
-// export const transporter = nodemailer.createTransport({
-//   host: ENV.MAILTRAP.HOST,
-//   port: ENV.MAILTRAP.PORT,
-//   auth: {
-//     user: ENV.MAILTRAP.USER,
-//     pass: ENV.MAILTRAP.PASS,
-//   },
-// });
+export const transporter = nodemailer.createTransport({
+  host: ENV.MAILTRAP.HOST,
+  port: ENV.MAILTRAP.PORT,
+  auth: {
+    user: ENV.MAILTRAP.USER,
+    pass: ENV.MAILTRAP.PASS,
+  },
+});
 console.log(process.env.MAILTRAP_HOST)
 console.log(Number(process.env.MAILTRAP_PORT) || 587)
 console.log(process.env.MAILTRAP_USER)
 console.log(process.env.MAILTRAP_PASS)
-export const transporter = nodemailer.createTransport({
-  host: process.env.MAILTRAP_HOST,
-  port: Number(process.env.MAILTRAP_PORT) || 587,
-  auth: {
-    user: process.env.MAILTRAP_USER,
-    pass: process.env.MAILTRAP_PASS,
-    },
-//   secure: true
-});
+// export const transporter = nodemailer.createTransport({
+//   host: process.env.MAILTRAP_HOST,
+//   port: Number(process.env.MAILTRAP_PORT) || 587,
+//   auth: {
+//     user: process.env.MAILTRAP_USER,
+//     pass: process.env.MAILTRAP_PASS,
+//     },
+// //   secure: true
+// });
 
 // export const sendPasswordResetEmail = async (
 //   email: string,
