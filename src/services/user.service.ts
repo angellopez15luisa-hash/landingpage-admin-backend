@@ -76,7 +76,7 @@ export class UserService {
     console.log("4")
 
     // 4. Enviamos el correo usando el helper
-    await sendPasswordResetEmail(user.email, resetUrl);
+    sendPasswordResetEmail(user.email, resetUrl);
     console.log("5")
 
     return "Se ha enviado un enlace de recuperación a tu correo";
