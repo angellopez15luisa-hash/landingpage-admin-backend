@@ -40,7 +40,7 @@
 // //       <p>Si no solicitaste esto, ignora este correo.</p>
 // //     `,
 // //   });
-    
+
 // //      console.log("hola este es mi error 2")
 // // };
 
@@ -64,19 +64,22 @@
 //   }
 // };
 
-import { Resend } from 'resend';
-import 'dotenv/config'
+import { Resend } from "resend";
+import "dotenv/config";
 
 // Inicializamos Resend con la API Key de las variables de entorno
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const sendPasswordResetEmail = async (email: string, resetUrl: string) => {
+export const sendPasswordResetEmail = async (
+  email: string,
+  resetUrl: string,
+) => {
   try {
     const { data, error } = await resend.emails.send({
       // Usamos 'onboarding@resend.dev' para pruebas sin dominio propio
-      from: 'Administración App <onboarding@resend.dev>',
+      from: "Administración App <soporte@imaynadigital.com>",
       to: [email],
-      subject: 'Restablecer tu contraseña',
+      subject: "Restablecer tu contraseña",
       html: `
         <div style="font-family: Arial, sans-serif; color: #333;">
           <h2>¿Olvidaste tu contraseña?</h2>
@@ -88,14 +91,14 @@ export const sendPasswordResetEmail = async (email: string, resetUrl: string) =>
     });
 
     if (error) {
-      console.error('Error reportado por Resend:', error);
-      throw new Error('No se pudo enviar el correo de recuperación');
+      console.error("Error reportado por Resend:", error);
+      throw new Error("No se pudo enviar el correo de recuperación");
     }
 
-    console.log('Correo enviado con éxito por Resend:', data);
+    console.log("Correo enviado con éxito por Resend:", data);
     return data;
   } catch (error) {
-    console.error('Error en sendPasswordResetEmail:', error);
+    console.error("Error en sendPasswordResetEmail:", error);
     throw error;
   }
 };
