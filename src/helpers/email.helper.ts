@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer';
-import { ENV } from '../config/env.config'; // Tu configuración global
+import nodemailer from "nodemailer";
+import { ENV } from "../config/env.config"; // Tu configuración global
 
 export const transporter = nodemailer.createTransport({
   host: ENV.MAILTRAP.HOST,
@@ -10,9 +10,12 @@ export const transporter = nodemailer.createTransport({
   },
 });
 
-export const sendPasswordResetEmail = async (email: string, resetUrl: string) => {
+export const sendPasswordResetEmail = async (
+  email: string,
+  resetUrl: string,
+) => {
   await transporter.sendMail({
-    from: '"Administración App" <no-reply@tu-app.com>',
+    from: '"Administración App" <hello@imaynadigital.com>',
     to: email,
     subject: "Restablecer tu contraseña",
     html: `
@@ -23,3 +26,22 @@ export const sendPasswordResetEmail = async (email: string, resetUrl: string) =>
     `,
   });
 };
+
+// export const sendPasswordResetEmail = async (email: string, resetUrl: string) => {
+//   try {
+//     const info = await transporter.sendMail({
+//       from: '"Administración App" <hello@imaynadigital.com>',
+//       to: email,
+//       subject: "Restablecer tu contraseña",
+//       html: `
+//         <h1>¿Olvidaste tu contraseña?</h1>
+//         <p>Haz clic en el siguiente enlace para restablecerla. Este enlace expira en 1 hora:</p>
+//         <a href="${resetUrl}">Restablecer contraseña</a>
+//         <p>Si no solicitaste esto, ignora este correo.</p>
+//       `
+//     });
+//     console.log("✅ Correo enviado con éxito:", info.messageId);
+//   } catch (error) {
+//     console.error("❌ ERROR DETALLADO AL ENVIAR CORREO:", error);
+//   }
+// };
