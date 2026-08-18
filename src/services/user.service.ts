@@ -50,13 +50,14 @@ export class UserService {
     email: UserType.User["email"],
   ): Promise<string> => {
     const user = await User.findOne({ where: { email } });
-
+    console.log("1")
     if (!user) {
       throw new CustomError(
         "No existe una cuenta registrada con este correo",
         404,
       );
     }
+    console.log("2")
 
     // 1. Generamos el token y la expiración
     const resetToken = crypto.randomBytes(32).toString("hex");
@@ -66,14 +67,17 @@ export class UserService {
     user.resetPasswordToken = resetToken;
     user.resetPasswordExpires = resetTokenExpires;
     await user.save();
-
+    console.log("3")
     // 3. Construimos el enlace hacia el frontend
     // Nota: Asegúrate de que esta URL sea la correcta de tu frontend
     const frontendUrl = process.env.FRONTEND_URL_PUBLIC;
     const resetUrl = `${frontendUrl}/auth/reset-password?token=${resetToken}`;
+    console.log(resetUrl)
+    console.log("4")
 
     // 4. Enviamos el correo usando el helper
     await sendPasswordResetEmail(user.email, resetUrl);
+    console.log("5")
 
     return "Se ha enviado un enlace de recuperación a tu correo";
   };
