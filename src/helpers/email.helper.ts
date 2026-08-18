@@ -24,41 +24,41 @@ export const transporter = nodemailer.createTransport({
 //   secure: true
 });
 
-export const sendPasswordResetEmail = async (
-  email: string,
-  resetUrl: string,
-) => {
-    console.log("hola este es mi error")
-  await transporter.sendMail({
-    from: '"Administración App" <hello@imaynadigital.com>',
-    to: email,
-    subject: "Restablecer tu contraseña",
-    html: `
-      <h1>¿Olvidaste tu contraseña?</h1>
-      <p>Haz clic en el siguiente enlace para restablecerla. Este enlace expira en 1 hora:</p>
-      <a href="${resetUrl}">Restablecer contraseña</a>
-      <p>Si no solicitaste esto, ignora este correo.</p>
-    `,
-  });
+// export const sendPasswordResetEmail = async (
+//   email: string,
+//   resetUrl: string,
+// ) => {
+//     console.log("hola este es mi error")
+//   await transporter.sendMail({
+//     from: '"Administración App" <hello@imaynadigital.com>',
+//     to: email,
+//     subject: "Restablecer tu contraseña",
+//     html: `
+//       <h1>¿Olvidaste tu contraseña?</h1>
+//       <p>Haz clic en el siguiente enlace para restablecerla. Este enlace expira en 1 hora:</p>
+//       <a href="${resetUrl}">Restablecer contraseña</a>
+//       <p>Si no solicitaste esto, ignora este correo.</p>
+//     `,
+//   });
     
-     console.log("hola este es mi error 2")
-};
-
-// export const sendPasswordResetEmail = async (email: string, resetUrl: string) => {
-//   try {
-//     const info = await transporter.sendMail({
-//       from: '"Administración App" <hello@imaynadigital.com>',
-//       to: email,
-//       subject: "Restablecer tu contraseña",
-//       html: `
-//         <h1>¿Olvidaste tu contraseña?</h1>
-//         <p>Haz clic en el siguiente enlace para restablecerla. Este enlace expira en 1 hora:</p>
-//         <a href="${resetUrl}">Restablecer contraseña</a>
-//         <p>Si no solicitaste esto, ignora este correo.</p>
-//       `
-//     });
-//     console.log("✅ Correo enviado con éxito:", info.messageId);
-//   } catch (error) {
-//     console.error("❌ ERROR DETALLADO AL ENVIAR CORREO:", error);
-//   }
+//      console.log("hola este es mi error 2")
 // };
+
+export const sendPasswordResetEmail = async (email: string, resetUrl: string) => {
+  try {
+    const info = await transporter.sendMail({
+      from: '"Administración App" <hello@imaynadigital.com>',
+      to: email,
+      subject: "Restablecer tu contraseña",
+      html: `
+        <h1>¿Olvidaste tu contraseña?</h1>
+        <p>Haz clic en el siguiente enlace para restablecerla. Este enlace expira en 1 hora:</p>
+        <a href="${resetUrl}">Restablecer contraseña</a>
+        <p>Si no solicitaste esto, ignora este correo.</p>
+      `
+    });
+    console.log("✅ Correo enviado con éxito:", info.messageId);
+  } catch (error) {
+    console.error("❌ ERROR DETALLADO AL ENVIAR CORREO:", error);
+  }
+};
