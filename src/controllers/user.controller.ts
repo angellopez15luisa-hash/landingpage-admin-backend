@@ -51,6 +51,7 @@ export class UserController {
   ): Promise<void> => {
     try {
       const { email } = req.body;
+      console.log(email)
       const message = await UserService.forgotPassword(email);
       res.status(200).json({
         success: true,
