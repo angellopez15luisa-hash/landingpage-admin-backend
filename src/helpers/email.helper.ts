@@ -45,7 +45,8 @@ export const transporter = nodemailer.createTransport({
 // };
 
 export const sendPasswordResetEmail = async (email: string, resetUrl: string) => {
-  try {
+    try {
+      console.log(email," aqui")
     const info = await transporter.sendMail({
       from: '"Administración App" <hello@imaynadigital.com>',
       to: email,
