@@ -52,6 +52,7 @@ export class UserController {
     try {
       const { email } = req.body;
       console.log(email)
+      console.log("holaaaaa")
       const message = await UserService.forgotPassword(email);
       res.status(200).json({
         success: true,
