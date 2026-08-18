@@ -10,3 +10,4 @@ export { ReviewOpnionType } from "./review-opinion.type";
 export { SocialLinkType } from "./social-link.type";
 export { HeroSettingType } from "./hero-setting.type";
 export { GeneralSettingType } from "./general-setting.type";
+export { UserType } from "./user.type";

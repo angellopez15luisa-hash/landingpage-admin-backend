@@ -19,3 +19,4 @@ export {
   GeneralSetting,
   initGeneralSettingModel,
 } from "./general-setting.model";
+export { User, initUserModel } from "./user.model";

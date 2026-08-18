@@ -3,19 +3,22 @@ import { HeroSectionController } from "../controllers";
 import { validateSchema } from "../middlewares/validate.middleware";
 import { HeroSectionSchema } from "../schemas";
 import { upload } from "../config/cloudinary.config";
+import { UserMiddleware } from "../middlewares";
 
 const router = Router();
 
-router.get("/get-all", HeroSectionController.getAll);
+router.use(UserMiddleware.verifyToken);
+
+router.get("/", HeroSectionController.getAll);
 
 router.get(
-  "/get-by-id/:id",
+  "/:id",
   validateSchema(HeroSectionSchema.getById),
   HeroSectionController.getById,
 );
 
 router.patch(
-  "/update/:id",
+  "/:id",
   upload.single("imagePath"),
   validateSchema(HeroSectionSchema.update),
   HeroSectionController.update,

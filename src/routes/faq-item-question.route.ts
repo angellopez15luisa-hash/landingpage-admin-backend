@@ -9,13 +9,6 @@ const router = Router();
 
 router.get("/get-all", FaqItemQuestionController.getAll);
 
-// router.put(
-//   "/update/:id",
-//   updateFaqItemQuestionSchema,
-//   ValidateMiddleware.validate,
-//   FaqItemQuestionMiddleware.notExists,
-//   FaqItemQuestionController.update,
-// );
 router.patch(
   "/update/:id",
   validateSchema(FaqItemQuestionSchema.update),

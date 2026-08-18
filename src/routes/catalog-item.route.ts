@@ -3,8 +3,11 @@ import { CatalogItemController } from "../controllers";
 import { validateSchema } from "../middlewares/validate.middleware";
 import { CatalogItemSchema } from "../schemas";
 import { upload } from "../config/cloudinary.config";
+import { UserMiddleware } from "../middlewares";
 
 const router = Router();
+
+router.use(UserMiddleware.verifyToken);
 
 router.get("/", CatalogItemController.getAll);
 

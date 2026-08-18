@@ -13,3 +13,5 @@ export {
   sequelize,
   DbModels,
 } from "./database.config";
+
+ 

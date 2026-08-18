@@ -9,23 +9,16 @@ import z from "zod";
 
 const router = Router();
 
-router.get("/get-all", ItemSectionController.getAll);
+router.get("/", ItemSectionController.getAll);
 
-// router.put(
-//   "/update/:id",
-//   updateItemSectionSchema,
-//   ValidateMiddleware.validate,
-//   ItemSectionMiddleware.notExists,
-//   ItemSectionController.update,
-// );
 router.get(
-  "/get-by-id/:id",
+  "/:id",
   validateSchema(ItemSectionSchema.getById),
   ItemSectionController.getById,
 );
 
 router.patch(
-  "/update/:id",
+  "/:id",
   validateSchema(ItemSectionSchema.update),
   ItemSectionController.update,
 );

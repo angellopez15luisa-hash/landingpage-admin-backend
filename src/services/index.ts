@@ -10,3 +10,4 @@ export { ReviewOpinionService } from "./review-opinion.service";
 export { SocialLinkService } from "./social-link.service";
 export { HeroSettingService } from "./hero-setting.service";
 export { GeneralSettingService } from "./general-setting.service";
+export { UserService} from './user.service'

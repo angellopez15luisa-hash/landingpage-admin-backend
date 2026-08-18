@@ -10,3 +10,4 @@ export { SocialLinkController } from "./social-link.controller";
 export { FooterSectionController } from "./footer-section.controller";
 export { HeroSettingController } from "./hero-setting.controller";
 export { GeneralSettingController } from './general-setting.controller'
+export { UserController } from './user.controller'

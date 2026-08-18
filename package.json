@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "model:create": "npx sequelize-cli model:generate --name",
     "migrate": "npx sequelize-cli db:migrate",
     "migrate:name": "npx sequelize-cli db:migrate --name",

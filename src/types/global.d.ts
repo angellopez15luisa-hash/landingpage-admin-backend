@@ -9,7 +9,9 @@ import {
   OrderStep,
   ReviewOpinion,
   SocialLink,
+  // User,
 } from "../models";
+import { UserType } from "./user.type";
 
 declare global {
   namespace Express {
@@ -24,6 +26,14 @@ declare global {
       faqItemQuestion: FaqItemQuestion;
       socialLink: SocialLink;
       footerSection: FooterSection;
+    }
+    interface Request {
+      user?:Pick<UserType.User,'id'|'email'|'role'>
+      // user?: {
+      //   id: UserType.User['id'],
+      //   email: UserType.User['email'],
+      //   role:UserType.User['role']
+      // }
     }
   }
 }

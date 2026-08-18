@@ -10,3 +10,4 @@ export { ReviewOpinionSchema } from "./review-opinion.schema";
 export { SocialLinkSchema } from "./social-link.schema";
 export { HeroSettingSchema } from "./hero-setting.schema";
 export { GeneralSettingSchema } from "./general-setting.schema";
+export { UserSchema } from './user.schema'

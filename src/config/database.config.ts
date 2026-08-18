@@ -24,6 +24,8 @@ import {
   initHeroSettingModel,
   GeneralSetting,
   initGeneralSettingModel,
+  User,
+  initUserModel
 } from "../models";
 import dotenv from "dotenv";
 
@@ -69,6 +71,7 @@ initSocialLinkModel(sequelize);
 initFooterSectionModel(sequelize);
 initHeroSettingModel(sequelize);
 initGeneralSettingModel(sequelize);
+initUserModel(sequelize)
 
 const models = {
   Navbar,
@@ -83,6 +86,7 @@ const models = {
   FooterSection,
   HeroSetting,
   GeneralSetting,
+  User
 };
 
 Object.values(models).forEach((model: any) => {
@@ -107,6 +111,7 @@ export {
   FooterSection,
   HeroSetting,
   GeneralSetting,
+  User
 };
 
 export const testConnection = async () => {

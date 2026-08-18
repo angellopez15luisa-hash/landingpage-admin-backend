@@ -19,6 +19,7 @@ import faqItemQuestionRoutes from "./routes/faq-item-question.route";
 import socialLinkRoutes from "./routes/social-link.route";
 import footerSectionRoutes from "./routes/footer-section.route";
 import generalSettingRoutes from "./routes/general-setting.route";
+import userRoutes from './routes/user.route'
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ app.use("/api/faq-item-questions", faqItemQuestionRoutes);
 app.use("/api/social-links", socialLinkRoutes);
 app.use("/api/footer-sections", footerSectionRoutes);
 app.use("/api/general-settings", generalSettingRoutes);
+app.use('/api/users',userRoutes)
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).send("¡Ruta no encontrada!");

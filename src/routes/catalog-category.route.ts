@@ -2,8 +2,11 @@ import { Router } from "express";
 import { CatalogCategoryController } from "../controllers";
 import { CatalogCategorySchema } from "../schemas";
 import { validateSchema } from "../middlewares/validate.middleware";
+import { UserMiddleware } from "../middlewares";
 
 const router = Router();
+
+router.use(UserMiddleware.verifyToken);
 
 router.get("/", CatalogCategoryController.getAll);
 
