@@ -69,7 +69,7 @@ export class UserService {
 
     // 3. Construimos el enlace hacia el frontend
     // Nota: Asegúrate de que esta URL sea la correcta de tu frontend
-    const frontendUrl = process.env.FRONTEND_URL_PUBLIC || process.env.FRONTEND_URL;
+    const frontendUrl = process.env.FRONTEND_URL_PUBLIC;
     const resetUrl = `${frontendUrl}/auth/reset-password?token=${resetToken}`;
 
     // 4. Enviamos el correo usando el helper
