@@ -13,7 +13,7 @@ export const ENV = {
   },
   MAILTRAP: {
     HOST: process.env.MAILTRAP_HOST,
-    PORT: Number(process.env.MAILTRAP_PORT) || 2525,
+    PORT: Number(process.env.MAILTRAP_PORT) || 587,
     USER: process.env.MAILTRAP_USER,
     PASS: process.env.MAILTRAP_PASS,
   },
