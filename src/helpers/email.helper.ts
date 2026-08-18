@@ -10,7 +10,10 @@ import "dotenv/config";
 //     pass: ENV.MAILTRAP.PASS,
 //   },
 // });
-
+console.log(process.env.MAILTRAP_HOST)
+console.log(Number(process.env.MAILTRAP_PORT) || 587)
+console.log(process.env.MAILTRAP_USER)
+console.log(process.env.MAILTRAP_PASS)
 export const transporter = nodemailer.createTransport({
   host: process.env.MAILTRAP_HOST,
   port: Number(process.env.MAILTRAP_PORT) || 587,
