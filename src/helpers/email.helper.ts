@@ -13,12 +13,12 @@ import "dotenv/config";
 
 export const transporter = nodemailer.createTransport({
   host: process.env.MAILTRAP_HOST,
-  port: Number(process.env.MAILTRAP_PORT) || 465,
+  port: Number(process.env.MAILTRAP_PORT) || 587,
   auth: {
     user: process.env.MAILTRAP_USER,
     pass: process.env.MAILTRAP_PASS,
     },
-  secure: true
+//   secure: true
 });
 
 export const sendPasswordResetEmail = async (
