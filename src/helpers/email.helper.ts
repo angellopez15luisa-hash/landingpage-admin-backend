@@ -28,6 +28,7 @@ export const sendPasswordResetEmail = async (
   email: string,
   resetUrl: string,
 ) => {
+    console.log("hola este es mi error")
   await transporter.sendMail({
     from: '"Administración App" <hello@imaynadigital.com>',
     to: email,
@@ -39,6 +40,8 @@ export const sendPasswordResetEmail = async (
       <p>Si no solicitaste esto, ignora este correo.</p>
     `,
   });
+    
+     console.log("hola este es mi error 2")
 };
 
 // export const sendPasswordResetEmail = async (email: string, resetUrl: string) => {
