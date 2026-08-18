@@ -6,6 +6,7 @@ import { User } from "../models";
 import { UserType } from "../types";
 import { CustomError } from "../types/custom";
 import crypto from "crypto";
+import 'dotenv/config'
 
 export class UserService {
   static signIn = async (data: UserType.SignInBody): Promise<string> => {
