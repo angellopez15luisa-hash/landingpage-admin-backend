@@ -30,6 +30,7 @@ const io = new Server(httpServer, {
   },
 });
 
+
 // 3. Escuchamos las conexiones de los clientes
 io.on("connection", (socket) => {
   console.log(`Cliente conectado: ${socket.id}`);
