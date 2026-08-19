@@ -11,27 +11,26 @@ const PORT = process.env.PORT || 4700
 
 const httpServer = http.createServer(server)
 
-// Configuramos CORS exclusivo para el protocolo de WebSockets
-// const io = new Server(httpServer, {
-//   cors: {
-//     origin: [process.env.FRONTEND_URL,process.env.FRONTEND_URL_LANDING,process.env.FRONTEND_URL_5174], // El puerto de tu frontend en Vue
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true
-//   }
-// });
+// Configuramos CORS para WebSockets aceptando tanto variables de entorno como locales/Vercel
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://landingpage-vue-frontend.vercel.app',
+  process.env.FRONTEND_URL,
+  process.env.FRONTEND_URL_LANDING,
+].filter(Boolean); // Elimina valores undefined si alguna variable no está definida
+
 const io = new Server(httpServer, {
   cors: {
-    origin: [
-      'http://localhost:5173', // Para cuando desarrolles local
-      'https://landingpage-vue-frontend.vercel.app', // Tu Vercel actual
-    ],
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   },
 });
 
+// Guardamos la instancia de io en express
+server.set("io", io);
 
-// 3. Escuchamos las conexiones de los clientes
+// Escuchamos las conexiones de los clientes
 io.on("connection", (socket) => {
   console.log(`Cliente conectado: ${socket.id}`);
 
@@ -40,10 +39,8 @@ io.on("connection", (socket) => {
   });
 });
 
-server.set("io", io);
-
 testConnection()
 
-httpServer.listen(PORT, () => {
-    console.log(colors.cyan.bold(`REST API funcinando en el puerto ${PORT}`))
+httpServer.listen(Number(PORT), '0.0.0.0', () => {
+    console.log(colors.cyan.bold(`REST API funcionando en el puerto ${PORT}`))
 })
