@@ -3,6 +3,7 @@ import { HeroSection } from "../models";
 import { HeroSectionType } from "../types";
 import { HeroSectionService } from "../services";
 import { v2 as cloudinary } from "cloudinary";
+import { Server } from "socket.io";
 
 export class HeroSectionController {
   static DEFAULT_IMAGE_URL = process.env.DEFAULT_IMAGE_URL;
@@ -79,6 +80,11 @@ export class HeroSectionController {
           );
         }
       }
+
+       const io = req.app.get("io") as Server | undefined;
+        if (io) {
+          io.emit("hero-section", { action: "update" });
+        }
 
       res.status(201).json({
         message: "hero-section actualizado satisfactoriamente",
