@@ -8,6 +8,7 @@ import {
 } from "../types/item-section.type";
 import { ItemSectionType } from "../types";
 import { ItemSectionService } from "../services";
+import { Server } from "socket.io";
 
 export class ItemSectionController {
   static getAll = async (
@@ -52,6 +53,12 @@ export class ItemSectionController {
     try {
       const id = Number(req.params.id);
       await ItemSectionService.update(id, req.body);
+
+      const io = req.app.get("io") as Server | undefined;
+      if (io) {
+        io.emit("item-sections", { action: "update" }); // o el nombre que elijas
+      }
+
       res.status(201).json({
         message: "item-section actualizado satisfactoriamente",
         success: true,
