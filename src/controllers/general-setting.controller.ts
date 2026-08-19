@@ -33,7 +33,8 @@ export class GeneralSettingController {
       await GeneralSettingService.update(Number(req.params.id), req.body);
 
        const io = req.app.get("io") as Server | undefined;
-        if (io) {
+      if (io) {
+          console.log("🚀 Emitiendo evento emit-general-setting desde el backend...");
           io.emit("emit-general-setting", { action: "update" });
         }
 
