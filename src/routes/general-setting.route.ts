@@ -6,6 +6,8 @@ import { UserMiddleware } from "../middlewares";
 
 const router = Router();
 
+router.get("/public", GeneralSettingController.get);
+
 router.use(UserMiddleware.verifyToken);
 
 router.get("/", GeneralSettingController.get);
