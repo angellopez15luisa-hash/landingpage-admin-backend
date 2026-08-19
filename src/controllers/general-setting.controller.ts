@@ -35,7 +35,7 @@ export class GeneralSettingController {
        const io = req.app.get("io") as Server | undefined;
       if (io) {
           console.log("🚀 Emitiendo evento emit-general-setting desde el backend...");
-          io.emit("emit-general-setting", { action: "update" });
+          io.emit("general-setting", { action: "update" });
         }
 
       res.status(201).json({
