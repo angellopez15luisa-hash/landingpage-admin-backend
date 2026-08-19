@@ -8,10 +8,10 @@ const router = Router();
 
 router.use(UserMiddleware.verifyToken);
 
-router.get("/get", GeneralSettingController.get);
+router.get("/", GeneralSettingController.get);
 
 router.patch(
-  "/update/:id",
+  "/:id",
   validateSchema(GeneralSettingSchema.update),
   GeneralSettingController.update,
 );
