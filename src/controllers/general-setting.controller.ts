@@ -34,7 +34,7 @@ export class GeneralSettingController {
 
        const io = req.app.get("io") as Server | undefined;
         if (io) {
-          io.emit("general-setting", { action: "update" });
+          io.emit("emit-general-setting", { action: "update" });
         }
 
       res.status(201).json({
