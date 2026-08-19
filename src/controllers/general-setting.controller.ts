@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { GeneralSettingType } from "../types";
 import { GeneralSettingService } from "../services";
+import { Server } from "socket.io";
 
 export class GeneralSettingController {
   static get = async (
@@ -30,6 +31,12 @@ export class GeneralSettingController {
   ): Promise<void> => {
     try {
       await GeneralSettingService.update(Number(req.params.id), req.body);
+
+       const io = req.app.get("io") as Server | undefined;
+        if (io) {
+          io.emit("general-setting", { action: "update" });
+        }
+
       res.status(201).json({
         message: "general-setting actualizado satisfactoriamente",
         success: true,
