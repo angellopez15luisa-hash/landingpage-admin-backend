@@ -14,7 +14,7 @@ const httpServer = http.createServer(server)
 // Configuramos CORS exclusivo para el protocolo de WebSockets
 const io = new Server(httpServer, {
   cors: {
-    origin: [process.env.FRONTEND_URL,process.env.FRONTEND_URL_LANDING, process.env.FRONTEND_URL_5174], // El puerto de tu frontend en Vue
+    origin: [process.env.FRONTEND_URL,process.env.FRONTEND_URL_LANDING,process.env.FRONTEND_URL_5174], // El puerto de tu frontend en Vue
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   }
