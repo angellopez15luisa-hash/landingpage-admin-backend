@@ -15,6 +15,7 @@ export class GeneralSetting extends Model<
   declare id: CreationOptional<number>;
   declare textNameCompany: string;
   declare textButtonNavbar: string;
+  declare textHrefNavbar: string;
   declare textButtonHeroSection: string;
   declare textTitleOrderStep: string;
   declare textSubtitleOrderStep: string;
@@ -45,6 +46,10 @@ export const initGeneralSettingModel = (sequelize: Sequelize) => {
         allowNull: false,
       },
       textButtonNavbar: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      textHrefNavbar: {
         type: DataTypes.STRING,
         allowNull: false,
       },

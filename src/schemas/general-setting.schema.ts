@@ -35,6 +35,12 @@ export namespace GeneralSettingSchema {
           message: "El text-button-navbar debe tener al menos tres caracteres",
         })
         .optional(),
+       textHrefNavbar: z
+        .string({ error: "El text-href-navbar debe ser una cadena de texto" })
+        .min(3, {
+          message: "El text-href-navbar debe tener al menos tres caracteres",
+        })
+        .optional(),
       textButtonHeroSection: z
         .string({
           error: "El text-button-hero-section debe ser una cadena de texto",
