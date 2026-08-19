@@ -65,10 +65,11 @@
 // };
 
 import { Resend } from "resend";
+import { ENV } from "../config/env.config"; // Tu configuración global
 import "dotenv/config";
 
 // Inicializamos Resend con la API Key de las variables de entorno
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(ENV.RESEND.RESEND_API_KEY);
 
 export const sendPasswordResetEmail = async (
   email: string,

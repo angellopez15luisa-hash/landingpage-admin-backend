@@ -21,4 +21,7 @@ export const ENV = {
     SECRET: process.env.JWT_SECRET || "supersecretkey",
     EXPIRES_IN: "1h",
   },
+  RESEND: {
+    RESEND_API_KEY:process.env.RESEND_API_KEY
+  }
 };
