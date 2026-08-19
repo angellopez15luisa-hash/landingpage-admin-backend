@@ -6,7 +6,7 @@ import { UserMiddleware } from "../middlewares";
 
 const router = Router();
 
-router.get("/´public", OrderStepController.getAll);
+router.get("/public", OrderStepController.getAll);
 
 router.use(UserMiddleware.verifyToken);
 
