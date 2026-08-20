@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { CatalogCategoryType } from "../types";
 import { CatalogCategoryService } from "../services";
+import { Server } from "socket.io";
 
 export class CatalogCategoryController {
   static getAll = async (
@@ -44,6 +45,12 @@ export class CatalogCategoryController {
   ): Promise<void> => {
     try {
       await CatalogCategoryService.create(req.body);
+
+       const io = req.app.get("io") as Server | undefined;
+        if (io) {
+          io.emit("catalog-category", { action: "update" });
+        }
+
       res.status(201).json({
         message: "catalog-category se creo satisfactoriamente",
         success: true,
@@ -65,6 +72,12 @@ export class CatalogCategoryController {
     try {
       const id = Number(req.params.id);
       await CatalogCategoryService.update(id, req.body);
+
+       const io = req.app.get("io") as Server | undefined;
+        if (io) {
+          io.emit("catalog-category", { action: "update" });
+        }
+
       res.status(201).json({
         message: "catalog-category actualizado satisfactoriamente",
         success: true,
@@ -81,6 +94,12 @@ export class CatalogCategoryController {
   ): Promise<void> => {
     try {
       await CatalogCategoryService.delete(Number(req.params.id));
+
+       const io = req.app.get("io") as Server | undefined;
+        if (io) {
+          io.emit("catalog-category", { action: "update" });
+        }
+
       res.status(201).json({
         message: "catalog-category se elimino satisfactoriamente",
         success: true,

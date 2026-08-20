@@ -52,7 +52,7 @@ export class OrderStepController {
       const id = Number(req.params.id);
       await OrderStepService.update(id, req.body);
 
-         const io = req.app.get("io") as Server | undefined;
+        const io = req.app.get("io") as Server | undefined;
         if (io) {
           io.emit("order-steps", { action: "update" });
         }
