@@ -7,6 +7,8 @@ import { UserMiddleware } from "../middlewares";
 
 const router = Router();
 
+router.get("/public", CatalogItemController.getAll);
+
 router.use(UserMiddleware.verifyToken);
 
 router.get("/", CatalogItemController.getAll);

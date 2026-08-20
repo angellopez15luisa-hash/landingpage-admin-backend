@@ -8,6 +8,7 @@ import {
 } from "../types/catalog-item.type";
 import { CatalogItemType } from "../types";
 import { CatalogItemService } from "../services";
+import { Server } from "socket.io";
 
 export class CatalogItemController {
   static DEFAULT_IMAGE_URL = process.env.DEFAULT_IMAGE_URL;
@@ -66,6 +67,12 @@ export class CatalogItemController {
 
       // 3. Pasamos el payload completo al service
       await CatalogItemService.create(payload);
+
+      const io = req.app.get("io") as Server | undefined;
+      if (io) {
+        io.emit("catalog-item", { action: "update" });
+      }
+
       res.status(201).json({
         message: "catalog-tem creado satisfactoriamente",
         success: true,
@@ -130,6 +137,11 @@ export class CatalogItemController {
         }
       }
 
+      const io = req.app.get("io") as Server | undefined;
+      if (io) {
+        io.emit("catalog-item", { action: "update" });
+      }
+
       res.status(200).json({
         message: "catalog-item actualizado satisfactoriamente",
         success: true,
@@ -178,6 +190,11 @@ export class CatalogItemController {
             cloudinaryError,
           );
         }
+      }
+
+      const io = req.app.get("io") as Server | undefined;
+      if (io) {
+        io.emit("catalog-item", { action: "update" });
       }
 
       res.status(200).json({
