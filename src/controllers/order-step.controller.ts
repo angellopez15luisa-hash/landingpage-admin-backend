@@ -8,6 +8,7 @@ import {
 import { OrderStep } from "../models";
 import { OrderStepType } from "../types";
 import { OrderStepService } from "../services";
+import { Server } from "socket.io";
 
 export class OrderStepController {
   static getAll = async (
@@ -50,6 +51,12 @@ export class OrderStepController {
     try {
       const id = Number(req.params.id);
       await OrderStepService.update(id, req.body);
+
+         const io = req.app.get("io") as Server | undefined;
+        if (io) {
+          io.emit("order-steps", { action: "update" });
+        }
+
       res.status(201).json({
         message: "order-step actualizado satisfactoriamente",
         success: true,
