@@ -1,28 +1,29 @@
-import http from 'http'
-import { Server } from 'socket.io'
-import server from './server'
-import dotenv from 'dotenv'
-import colors from 'colors'
-import { testConnection } from "./config/database.config"
+import http from "http";
+import { Server } from "socket.io";
+import server from "./server";
+import dotenv from "dotenv";
+import colors from "colors";
+import { testConnection } from "./config/database.config";
 
-dotenv.config()
+dotenv.config();
 
-const PORT = process.env.PORT || 4700
+const PORT = process.env.PORT || 4700;
 
-const httpServer = http.createServer(server)
+const httpServer = http.createServer(server);
 
 // Configuramos CORS para WebSockets aceptando tanto variables de entorno como locales/Vercel
 const allowedOrigins = [
-  'http://localhost:5173',
-  'https://landingpage-vue-frontend.vercel.app',
+  "http://localhost:5173",
+  "https://landingpage-vue-frontend.vercel.app",
   process.env.FRONTEND_URL,
   process.env.FRONTEND_URL_LANDING,
+  process.env.FRONTEND_URL_LANDING_SUBDOMAIN,
 ].filter(Boolean); // Elimina valores undefined si alguna variable no está definida
 
 const io = new Server(httpServer, {
   cors: {
     origin: allowedOrigins,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },
 });
@@ -39,8 +40,8 @@ io.on("connection", (socket) => {
   });
 });
 
-testConnection()
+testConnection();
 
-httpServer.listen(Number(PORT), '0.0.0.0', () => {
-    console.log(colors.cyan.bold(`REST API funcionando en el puerto ${PORT}`))
-})
+httpServer.listen(Number(PORT), "0.0.0.0", () => {
+  console.log(colors.cyan.bold(`REST API funcionando en el puerto ${PORT}`));
+});
