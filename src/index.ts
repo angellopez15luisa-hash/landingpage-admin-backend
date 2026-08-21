@@ -13,11 +13,13 @@ const httpServer = http.createServer(server);
 
 // Configuramos CORS para WebSockets aceptando tanto variables de entorno como locales/Vercel
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://landingpage-vue-frontend.vercel.app",
+  // "http://localhost:5173",
+  // "https://landingpage-vue-frontend.vercel.app",
   process.env.FRONTEND_URL,
   process.env.FRONTEND_URL_LANDING,
+  process.env.FRONTEND_URL_ADMIN,
   process.env.FRONTEND_URL_LANDING_SUBDOMAIN,
+  process.env.FRONTEND_URL_ADMIN_SUBDOMAIN
 ].filter(Boolean); // Elimina valores undefined si alguna variable no está definida
 
 const io = new Server(httpServer, {
