@@ -50,10 +50,10 @@ export class UserController {
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const { email } = req.body;
-      console.log(email)
+      // const { email } = req.body;
+      // console.log(email)
       console.log("holaaaaa")
-      const message = await UserService.forgotPassword(email);
+      const message = await UserService.forgotPassword(req.body);
       res.status(200).json({
         success: true,
         message,

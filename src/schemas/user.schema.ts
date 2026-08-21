@@ -49,6 +49,7 @@ export namespace UserSchema {
         })
         .min(1, "El correo electronico es obligatorio")
         .email({ message: "Ingresa un correo electronico valido" }),
+      frontendUrl:z.string({message: "El frontendUrl debe ser una cadena de texto",}).min(1, "El frontendUrl es obligatorio")
     }),
   });
 
