@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { ReviewOpinionService } from "../services";
 import { ReviewOpnionType } from "../types";
 import { MessageResponse } from "../types/custom";
+import { Server } from "socket.io";
 
 export class ReviewOpinionController {
   static getAll = async (
@@ -47,6 +48,12 @@ export class ReviewOpinionController {
   ): Promise<void> => {
     try {
       const message = await ReviewOpinionService.create(req.body);
+
+      const io = req.app.get("io") as Server | undefined;
+      if (io) {
+        io.emit("review-opinions", { action: "update" });
+      }
+
       res.status(201).json({
         message,
         success: true,
@@ -73,6 +80,10 @@ export class ReviewOpinionController {
       // await reviewOpinion.save();
       const id = Number(req.params.id);
       await ReviewOpinionService.update(id, req.body);
+      const io = req.app.get("io") as Server | undefined;
+      if (io) {
+        io.emit("review-opinions", { action: "update" });
+      }
       res.status(200).json({
         message: "review-opinion actualizado satisfactoriamente",
         success: true,
@@ -89,6 +100,10 @@ export class ReviewOpinionController {
   ): Promise<void> => {
     try {
       const message = await ReviewOpinionService.delete(Number(req.params.id));
+      const io = req.app.get("io") as Server | undefined;
+      if (io) {
+        io.emit("review-opinions", { action: "update" });
+      }
       res.status(200).json({
         message,
         success: true,
