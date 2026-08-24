@@ -31,6 +31,48 @@ export const updateReviewOpinionSchema = [
 ];
 
 export namespace ReviewOpinionSchema {
+  export const getById = z.object({
+    params: z.object({
+      id: z.string().transform((val, ctx) => {
+        const parsed = Number(val);
+        if (isNaN(parsed)) {
+          ctx.addIssue({
+            code: "custom",
+            message: "El ID debe ser un numero valido",
+          });
+          return z.NEVER;
+        }
+        if (parsed <= 0) {
+          ctx.addIssue({
+            code: "custom",
+            message: "El ID debe ser mayor a cero",
+          });
+          return z.NEVER;
+        }
+        return val;
+      }),
+    }),
+  });
+
+  export const create = z.object({
+    body: z.object({
+      name: z
+        .string({ error: "El name debe ser una cadena de texto" })
+        .min(3, "El name debe tener al menos tres caracteres")
+        .optional(),
+      rating: z.coerce
+        .number({ error: "El rating debe ser un numero" })
+        .int("El rating debe ser un numero entero")
+        .min(1, "El valor minimo es 1")
+        .max(5, "El valor maximo es 5")
+        .optional(),
+      text: z
+        .string({ error: "El text debe ser una cadena de texto" })
+        .min(3, "El text debe tener al menos tres caracteres")
+        .optional(),
+    }),
+  });
+
   export const update = z.object({
     params: z.object({
       id: z.string().transform((val, ctx) => {

@@ -8,7 +8,7 @@ export class ReviewOpinionService {
       attributes: ["id", "name", "rating", "text"],
     });
   }
-
+r
   static async getById(
     id: ReviewOpinion["id"],
   ): Promise<ReviewOpnionType.Response> {
@@ -17,6 +17,12 @@ export class ReviewOpinionService {
     return reviewOpinion;
   }
 
+  static create = async (
+    data: ReviewOpnionType.CreateBody,
+  ): Promise<string> => {
+    await ReviewOpinion.create(data);
+    return "review-opinion creado satisfactoriamente";
+  };
   static async update(
     id: ReviewOpinion["id"],
     data: ReviewOpnionType.UpdateBody,
@@ -24,4 +30,10 @@ export class ReviewOpinionService {
     const reviewOpinion = await this.getById(id);
     await reviewOpinion.update(data);
   }
+
+  static delete = async (id: ReviewOpinion["id"]): Promise<string> => {
+    const reviewOpinion = await this.getById(id);
+    await reviewOpinion.destroy();
+    return "review-opnion eliminado satisfactoriamente";
+  };
 }

@@ -1,26 +1,39 @@
 import { Router } from "express";
 import { ReviewOpinionController } from "../controllers";
-import { updateReviewOpinionSchema } from "../schemas/review-opinion.schema";
-import { ReviewOpinionMiddleware, ValidateMiddleware } from "../middlewares";
+import { UserMiddleware } from "../middlewares";
 import { validateSchema } from "../middlewares/validate.middleware";
 import { ReviewOpinionSchema } from "../schemas";
 
 const router = Router();
 
-router.get("/get-all", ReviewOpinionController.getAll);
+router.get("/public", ReviewOpinionController.getAll);
 
-// router.put(
-//   "/update/:id",
-//   updateReviewOpinionSchema,
-//   ValidateMiddleware.validate,
-//   ReviewOpinionMiddleware.notExists,
-//   ReviewOpinionController.update,
-// );
+router.use(UserMiddleware.verifyToken);
+
+router.get("/", ReviewOpinionController.getAll);
+
+router.get(
+  "/:id",
+  validateSchema(ReviewOpinionSchema.getById),
+  ReviewOpinionController.getById,
+);
+
+router.post(
+  "/",
+  validateSchema(ReviewOpinionSchema.create),
+  ReviewOpinionController.create,
+);
 
 router.patch(
-  "/update/:id",
+  "/:id",
   validateSchema(ReviewOpinionSchema.update),
   ReviewOpinionController.update,
+);
+
+router.delete(
+  "/:id",
+  validateSchema(ReviewOpinionSchema.getById),
+  ReviewOpinionController.delete,
 );
 
 export default router;

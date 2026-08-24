@@ -24,12 +24,19 @@ export interface IReviewOpinionGetAllResponse extends Omit<
 export type IReviewOpinionUpdateResponse = IMessageResponse;
 
 export namespace ReviewOpnionType {
-  
   export type UpdateParams = z.infer<
     typeof ReviewOpinionSchema.update
   >["params"];
 
   export type UpdateBody = z.infer<typeof ReviewOpinionSchema.update>["body"];
+
+  export type CreateBody = z.infer<typeof ReviewOpinionSchema.create>["body"];
+
+  export type GetByIdParams = z.infer<
+    typeof ReviewOpinionSchema.getById
+  >["params"];
+
+  export type DeleteParams = GetByIdParams;
 
   export type Response = ReviewOpinion;
 
@@ -38,4 +45,10 @@ export namespace ReviewOpnionType {
   };
 
   export type UpdateResponse = MessageResponse;
+
+  export type GetByIdResponse = Omit<MessageResponse, "message"> & {
+    reviewOpinion: Response;
+  };
+
+  export type CreateResponse = MessageResponse;
 }
