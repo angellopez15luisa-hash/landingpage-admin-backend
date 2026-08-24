@@ -16,6 +16,7 @@ export class ReviewOpinion extends Model<
   declare public name: string;
   declare public rating: number;
   declare public text: string;
+  declare public isActive: boolean;
 
   public static associate(models: DbModels) {}
 }
@@ -27,6 +28,11 @@ export const initReviewOpinionModel = (sequelize: Sequelize) => {
       name: { type: DataTypes.STRING, allowNull: false },
       rating: { type: DataTypes.INTEGER, allowNull: false },
       text: { type: DataTypes.TEXT, allowNull: false },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
     },
     {
       sequelize,

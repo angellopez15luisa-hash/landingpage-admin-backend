@@ -70,6 +70,7 @@ export namespace ReviewOpinionSchema {
         .string({ error: "El text debe ser una cadena de texto" })
         .min(3, "El text debe tener al menos tres caracteres")
         .optional(),
+      isActive: z.boolean().optional(),
     }),
   });
 
@@ -109,6 +110,7 @@ export namespace ReviewOpinionSchema {
         .string({ error: "El text debe ser una cadena de texto" })
         .min(3, "El text debe tener al menos tres caracteres")
         .optional(),
+      isActive: z.boolean().optional(),
     }),
   });
 }
