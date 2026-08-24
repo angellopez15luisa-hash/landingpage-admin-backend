@@ -4,9 +4,7 @@ import { CustomError } from "../types/custom";
 
 export class ReviewOpinionService {
   static async getAll(): Promise<ReviewOpnionType.Response[]> {
-    return await ReviewOpinion.findAll({
-      attributes: ["id", "name", "rating", "text"],
-    });
+    return await ReviewOpinion.findAll();
   }
 r
   static async getById(

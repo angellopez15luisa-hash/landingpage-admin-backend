@@ -36,6 +36,10 @@ export const initReviewOpinionModel = (sequelize: Sequelize) => {
     },
     {
       sequelize,
+      timestamps: true,
+      defaultScope: {
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
     },
   );
 };
