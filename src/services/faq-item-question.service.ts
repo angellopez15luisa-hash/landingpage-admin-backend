@@ -5,7 +5,7 @@ import { CustomError } from "../types/custom";
 export class FaqItemQuestionService {
   static async getAll(): Promise<FaqItemQuestionType.Response[]> {
     return await FaqItemQuestion.findAll({
-      attributes: ["id", "question", "answer"],
+      attributes: ["id", "question", "answer",'isActive'],
     });
   }
 
