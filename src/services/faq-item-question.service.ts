@@ -13,9 +13,17 @@ export class FaqItemQuestionService {
     id: FaqItemQuestion["id"],
   ): Promise<FaqItemQuestionType.Response> {
     const faqItemQuestion = await FaqItemQuestion.findByPk(id);
-    if (!faqItemQuestion) throw new CustomError("faq-item-question no existe", 404);
+    if (!faqItemQuestion)
+      throw new CustomError("faq-item-question no existe", 404);
     return faqItemQuestion;
   }
+
+  static create = async (
+    data: FaqItemQuestionType.CreateBody,
+  ): Promise<string> => {
+    await FaqItemQuestion.create(data);
+    return "Pregunta frecuente creado satisfactoriamente";
+  };
 
   static async update(
     id: FaqItemQuestion["id"],
@@ -24,4 +32,10 @@ export class FaqItemQuestionService {
     const faqItemQuestion = await this.getById(id);
     await faqItemQuestion.update(data);
   }
+
+  static delete = async (id: FaqItemQuestion["id"]): Promise<string> => {
+    const faqItemQuestion = await this.getById(id);
+    await faqItemQuestion.destroy();
+    return "Pregunta frecuente eliminado satisfactoriamente";
+  };
 }

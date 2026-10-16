@@ -32,12 +32,12 @@ export namespace UserSchema {
         .string({
           message: "La contraseña actual es obligatoria",
         })
-        .min(6, "La contraseña actual debe tener al menos 8 caracteres"),
+        .min(8, "La contraseña actual debe tener al menos 8 caracteres"),
       newPassword: z
         .string({
           message: "La nueva contraseña es obligatoria",
         })
-        .min(6, "La contraseña actual debe tener al menos 8 caracteres"),
+        .min(8, "La contraseña actual debe tener al menos 8 caracteres"),
     }),
   });
 

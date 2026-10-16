@@ -25,6 +25,41 @@ export const updateFaqItemQuestionSchema = [
 ];
 
 export namespace FaqItemQuestionSchema {
+  export const getById = z.object({
+    params: z.object({
+      id: z.string().transform((val, ctx) => {
+        const parsed = Number(val);
+        if (isNaN(parsed)) {
+          ctx.addIssue({
+            code: "custom",
+            message: "El ID debe ser un numero valido",
+          });
+          return z.NEVER;
+        }
+        if (parsed <= 0) {
+          ctx.addIssue({
+            code: "custom",
+            message: "El ID debe ser mayor a cero",
+          });
+          return z.NEVER;
+        }
+        return val;
+      }),
+    }),
+  });
+  export const create = z.object({
+    body: z.object({
+      question: z
+        .string({ error: "La pregunta debe ser una cadena de texto" })
+        .min(3, "La pregunta debe tener al menos tres caracteres")
+        .optional(),
+      answer: z
+        .string({ error: "La respuesta debe ser una cadena de texto" })
+        .min(3, "La respuesta debe tener al menos tres caracteres")
+        .optional(),
+      isActive: z.boolean().optional(),
+    }),
+  });
   export const update = z.object({
     params: z.object({
       id: z.string().transform((val, ctx) => {
@@ -55,6 +90,7 @@ export namespace FaqItemQuestionSchema {
         .string({ error: "El answer debe ser una cadena de texto" })
         .min(3, "El answer debe tener al menos tres caracteres")
         .optional(),
+       isActive: z.boolean().optional(),
     }),
   });
 }
