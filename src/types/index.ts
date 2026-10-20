@@ -11,3 +11,5 @@ export { SocialLinkType } from "./social-link.type";
 export { HeroSettingType } from "./hero-setting.type";
 export { GeneralSettingType } from "./general-setting.type";
 export { UserType } from "./user.type";
+export { ContactSendEmailBody } from "./contact-section.type";
+export { CustomError, IMessageResponse, MessageResponse } from "./custom";

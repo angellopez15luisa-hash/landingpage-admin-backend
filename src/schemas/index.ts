@@ -11,3 +11,4 @@ export { SocialLinkSchema } from "./social-link.schema";
 export { HeroSettingSchema } from "./hero-setting.schema";
 export { GeneralSettingSchema } from "./general-setting.schema";
 export { UserSchema } from './user.schema'
+export { contactSchema,contactSendEmailSchema } from './contact-section.schema'
